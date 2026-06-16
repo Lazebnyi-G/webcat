@@ -1,0 +1,2379 @@
+<!doctype html>
+<html lang="ru">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Георгий Лазебный | Режиссёр, оператор, фотограф</title>
+  <style>
+    :root {
+      --orange: #f97316;
+      --stone: #78716c;
+      --stone-dark: #292524;
+      --stone-mid: #a8a29e;
+      --stone-light: #d6d3d1;
+      --lime: #e6ff1a;
+      --paper: #f5f2ed;
+      --white: #ffffff;
+      --ink: #26251e;
+      --body: #5a5852;
+      --body-strong: #26251e;
+      --muted: #807d72;
+      --muted-soft: #a09c92;
+      --on-primary: #ffffff;
+      --unit: 4px;
+      --surface-opacity: 0;
+    }
+
+    * {
+      box-sizing: border-box;
+    }
+
+    html {
+      scroll-behavior: smooth;
+    }
+
+    body {
+      position: relative;
+      margin: 0;
+      min-height: 100vh;
+      color: var(--body);
+      background:
+        linear-gradient(180deg, rgba(41, 37, 36, 0.08), rgba(120, 113, 108, 0.12)),
+        var(--paper);
+      font-family: Inter, ui-sans-serif, system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
+      font-size: 12px;
+      line-height: 16px;
+      letter-spacing: 0;
+      overflow-x: hidden;
+    }
+
+    body::before {
+      content: "";
+      position: fixed;
+      inset: 0;
+      z-index: 1;
+      pointer-events: none;
+      opacity: 0.18;
+      background-image:
+        radial-gradient(circle at 18% 28%, rgba(41, 37, 36, 0.18) 0 1px, transparent 1px),
+        radial-gradient(circle at 72% 64%, rgba(255, 255, 255, 0.22) 0 1px, transparent 1px),
+        radial-gradient(circle at 42% 86%, rgba(41, 37, 36, 0.12) 0 1px, transparent 1px);
+      background-size: 3px 3px, 4px 4px, 5px 5px;
+      mix-blend-mode: multiply;
+    }
+
+    a {
+      color: inherit;
+      text-decoration: none;
+    }
+
+    button,
+    input,
+    textarea {
+      font: inherit;
+    }
+
+    #particle-bg,
+    .fallback-bg {
+      position: fixed;
+      inset: 0;
+      width: 100%;
+      height: 100%;
+    }
+
+    #particle-bg {
+      z-index: 1;
+      pointer-events: none;
+    }
+
+    .fallback-bg {
+      z-index: 0;
+      overflow: hidden;
+      background-image:
+        radial-gradient(circle at 18% 12%, rgba(255, 255, 255, 0.68), transparent 24%),
+        radial-gradient(circle at 78% 20%, rgba(168, 162, 158, 0.36), transparent 28%),
+        radial-gradient(circle at 48% 82%, rgba(255, 255, 255, 0.5), transparent 30%),
+        linear-gradient(135deg, rgba(214, 211, 209, 0.92), rgba(120, 113, 108, 0.48));
+    }
+
+    .fallback-bg::before,
+    .fallback-bg::after {
+      content: "";
+      position: absolute;
+      inset: 32px;
+      border: 1px solid rgba(255, 255, 255, 0.34);
+      background:
+        linear-gradient(135deg, rgba(255, 255, 255, 0.28), rgba(120, 113, 108, 0.08)),
+        rgba(255, 255, 255, 0.1);
+      box-shadow:
+        inset 0 1px 0 rgba(255, 255, 255, 0.48),
+        inset 0 -1px 0 rgba(41, 37, 36, 0.08),
+        rgba(41, 37, 36, 0.08) -20px -20px 80px 0;
+      backdrop-filter: blur(28px) saturate(120%);
+    }
+
+    .fallback-bg::after {
+      inset: 0;
+      border: 0;
+      background:
+        linear-gradient(115deg, transparent 0 18%, rgba(255, 255, 255, 0.24) 32%, transparent 46%),
+        linear-gradient(180deg, rgba(255, 255, 255, 0.28), rgba(41, 37, 36, 0.08));
+      mix-blend-mode: soft-light;
+      animation: glass-shift 20000ms linear infinite;
+    }
+
+    @keyframes glass-shift {
+      0% {
+        transform: translate3d(-4%, -2%, 0) scale(1.02);
+      }
+
+      50% {
+        transform: translate3d(4%, 2%, 0) scale(1.06);
+      }
+
+      100% {
+        transform: translate3d(-4%, -2%, 0) scale(1.02);
+      }
+    }
+
+    .page {
+      position: relative;
+      z-index: 2;
+      width: min(100%, 1440px);
+      margin: 0 auto;
+      padding: 32px;
+    }
+
+    .topbar {
+      position: sticky;
+      top: 16px;
+      z-index: 10;
+      display: grid;
+      grid-template-columns: repeat(6, minmax(0, 1fr));
+      align-items: center;
+      gap: 8px;
+      min-height: 56px;
+      padding: 12px 18px;
+      border: 1px solid rgba(255, 255, 255, 0.46);
+      border-radius: 9999px;
+      background: rgba(245, 242, 237, 0.76);
+      box-shadow:
+        inset 0 1px 0 rgba(255, 255, 255, 0.52),
+        rgba(41, 37, 36, 0.06) 0 12px 40px 0;
+      backdrop-filter: blur(22px) saturate(130%);
+      overflow: visible;
+    }
+
+    .brand,
+    .nav,
+    .label,
+    .button,
+    .meta {
+      color: var(--muted);
+      font-size: 10px;
+      font-weight: 400;
+      line-height: 15px;
+      letter-spacing: 2px;
+      text-transform: uppercase;
+    }
+
+    .brand {
+      display: flex;
+      align-items: center;
+      gap: 8px;
+      min-width: 0;
+      color: #000000;
+      font-size: 11px;
+      font-weight: 700;
+      line-height: 16px;
+      letter-spacing: 1.6px;
+    }
+
+    .brand-mark {
+      width: 32px;
+      height: 16px;
+      border: 1px solid var(--orange);
+      border-radius: 9999px;
+      background: linear-gradient(90deg, var(--orange), rgba(249, 115, 22, 0.08));
+    }
+
+    .nav {
+      grid-column: 2 / -1;
+      display: grid;
+      grid-template-columns: repeat(5, minmax(0, 1fr));
+      align-items: center;
+      gap: 8px;
+      width: 100%;
+      color: #000000;
+      font-size: 11px;
+      font-weight: 600;
+      line-height: 16px;
+      letter-spacing: 1.6px;
+    }
+
+    .nav a,
+    .nav-pair {
+      min-width: 0;
+      text-align: center;
+      white-space: nowrap;
+    }
+
+    .nav a {
+      border-bottom: 1px solid transparent;
+      transition: color 150ms ease, border-color 150ms ease;
+    }
+
+    .nav-pair {
+      display: flex;
+      justify-content: center;
+      gap: 16px;
+    }
+
+    .nav a:hover {
+      color: var(--orange);
+      border-color: var(--orange);
+    }
+
+    .brand,
+    .nav {
+      position: relative;
+      z-index: 2;
+    }
+
+    .nav-hamster {
+      position: absolute;
+      left: 0;
+      top: 0;
+      z-index: 1;
+      width: 36px;
+      height: 26px;
+      pointer-events: none;
+      transform-origin: 50% 50%;
+      filter: drop-shadow(0 5px 6px rgba(41, 37, 36, 0.18));
+    }
+
+    .nav-hamster span {
+      position: absolute;
+      display: block;
+    }
+
+    .hamster-body {
+      left: 5px;
+      top: 8px;
+      width: 23px;
+      height: 15px;
+      border: 1px solid rgba(41, 37, 36, 0.28);
+      border-radius: 9999px 80% 70% 9999px;
+      background:
+        radial-gradient(circle at 34% 45%, rgba(255, 255, 255, 0.68) 0 26%, transparent 27%),
+        linear-gradient(135deg, #d8aa68, #a96f34);
+    }
+
+    .hamster-head {
+      right: 2px;
+      top: 5px;
+      width: 17px;
+      height: 16px;
+      border: 1px solid rgba(41, 37, 36, 0.28);
+      border-radius: 58% 48% 52% 46%;
+      background: linear-gradient(135deg, #e5bc78, #b77a39);
+      transform-origin: 35% 70%;
+    }
+
+    .hamster-ear {
+      right: 9px;
+      top: 1px;
+      width: 7px;
+      height: 7px;
+      border: 1px solid rgba(41, 37, 36, 0.24);
+      border-radius: 50%;
+      background: #c98749;
+    }
+
+    .hamster-ear::after {
+      content: "";
+      position: absolute;
+      inset: 2px;
+      border-radius: 50%;
+      background: rgba(245, 242, 237, 0.72);
+    }
+
+    .hamster-eye {
+      right: 6px;
+      top: 6px;
+      width: 3px;
+      height: 3px;
+      border-radius: 50%;
+      background: #26251e;
+    }
+
+    .hamster-nose {
+      right: 1px;
+      top: 10px;
+      width: 4px;
+      height: 3px;
+      border-radius: 50%;
+      background: #26251e;
+    }
+
+    .hamster-whisker {
+      right: -5px;
+      top: 10px;
+      width: 7px;
+      height: 1px;
+      background: rgba(38, 37, 30, 0.6);
+      transform-origin: left center;
+    }
+
+    .hamster-whisker.one {
+      transform: rotate(-14deg);
+    }
+
+    .hamster-whisker.two {
+      top: 13px;
+      transform: rotate(12deg);
+    }
+
+    .hamster-paw {
+      top: 21px;
+      width: 5px;
+      height: 3px;
+      border-radius: 9999px;
+      background: #70421f;
+      animation: hamster-step 360ms ease-in-out infinite alternate;
+    }
+
+    .hamster-paw.front {
+      right: 7px;
+    }
+
+    .hamster-paw.back {
+      left: 10px;
+      animation-delay: 180ms;
+    }
+
+    .nav-hamster.is-sniffing .hamster-head {
+      animation: hamster-sniff 320ms ease-in-out infinite alternate;
+    }
+
+    .nav-hamster.is-sniffing .hamster-paw {
+      animation-play-state: paused;
+    }
+
+    @keyframes hamster-step {
+      from {
+        transform: translateX(-1px);
+      }
+
+      to {
+        transform: translateX(2px);
+      }
+    }
+
+    @keyframes hamster-sniff {
+      from {
+        transform: rotate(-5deg) translateX(0);
+      }
+
+      to {
+        transform: rotate(7deg) translateX(2px);
+      }
+    }
+
+    .logo-panel {
+      position: relative;
+      min-height: clamp(280px, 33vw, 430px);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      margin-bottom: 12px;
+      padding: 28px;
+      border: 1px solid rgba(255, 255, 255, 0.58);
+      border-radius: 24px;
+      background:
+        linear-gradient(135deg, rgba(255, 255, 255, 0.3), rgba(120, 113, 108, 0.15)),
+        rgba(255, 255, 255, 0.2);
+      box-shadow:
+        inset 0 1px 0 rgba(255, 255, 255, 0.56),
+        rgba(41, 37, 36, 0.07) 0 18px 56px 0;
+      overflow: hidden;
+    }
+
+   .hero-title {
+  margin: 0;
+  color: #000000;
+  font-size: clamp(72px, 17vw, 288px);
+  font-weight: 350;
+  line-height: 0.76;
+  letter-spacing: -0.05em;
+  text-align: center;
+  text-transform: uppercase;
+  max-width: 1240px;
+} 
+
+    .hero {
+      padding: 12px 0 48px;
+    }
+
+    .video-grid {
+      display: grid;
+      grid-template-columns: repeat(3, minmax(0, 1fr));
+      gap: 8px;
+    }
+
+    .video-card {
+      position: relative;
+      min-height: clamp(420px, 47vw, 620px);
+      overflow: hidden;
+      border: 4px solid rgba(41, 37, 36, 0.58);
+      border-radius: 8px;
+      background:
+        linear-gradient(135deg, rgba(255, 255, 255, 0.74), rgba(214, 211, 209, 0.32)),
+        rgba(255, 255, 255, 0.62);
+      box-shadow:
+        inset 0 1px 0 rgba(255, 255, 255, 0.72),
+        rgba(41, 37, 36, 0.08) 0 12px 32px 0;
+    }
+
+    .video-card video {
+      width: 100%;
+      height: 100%;
+      display: block;
+      object-fit: cover;
+    }
+
+    .video-placeholder {
+      position: absolute;
+      inset: 0;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      padding: 24px;
+      color: rgba(41, 37, 36, 0.44);
+      font-size: 13px;
+      font-weight: 700;
+      line-height: 18px;
+      letter-spacing: 2px;
+      text-align: center;
+      text-transform: uppercase;
+    }
+
+    .video-card.has-video .video-placeholder {
+      display: none;
+    }
+
+    .button {
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      min-height: 32px;
+      padding: 2px 12px;
+      border: 1px solid var(--stone-light);
+      border-radius: 9999px;
+      background: rgba(255, 255, 255, 0.32);
+      transition: color 150ms ease, border-color 150ms ease, background 150ms ease;
+      cursor: pointer;
+    }
+
+    .button.primary {
+      color: var(--on-primary);
+      border-color: var(--orange);
+      background: var(--orange);
+    }
+
+    .button:hover {
+      color: var(--orange);
+      border-color: var(--orange);
+      background: rgba(255, 255, 255, 0.54);
+    }
+
+    .button.primary:hover {
+      color: var(--ink);
+      background: var(--lime);
+      border-color: var(--lime);
+    }
+
+    .project-card,
+    .service,
+    .process-step,
+    .about-panel,
+    .contact-panel {
+      border: 1px solid rgba(214, 211, 209, 0.9);
+      background: rgba(255, 255, 255, 0.48);
+      box-shadow: rgba(0, 0, 0, 0.05) -20px -20px 60px 0;
+      backdrop-filter: blur(16px);
+    }
+
+    .section {
+      padding: 48px 0;
+    }
+
+    .section-head {
+      display: grid;
+      grid-template-columns: 180px minmax(0, 1fr);
+      gap: 48px;
+      align-items: end;
+      margin-bottom: 32px;
+    }
+
+    .section-title {
+      margin: 0;
+      max-width: 900px;
+      color: var(--ink);
+      font-size: clamp(36px, 8vw, 112px);
+      font-weight: 500;
+      line-height: 0.88;
+      letter-spacing: -0.05em;
+      text-transform: uppercase;
+    }
+
+    .work-grid {
+      display: grid;
+      grid-template-columns: 1.2fr 0.8fr;
+      gap: 8px;
+    }
+
+    .project-card {
+      min-height: 360px;
+      display: flex;
+      flex-direction: column;
+      justify-content: space-between;
+      overflow: hidden;
+      border-radius: 32px;
+    }
+
+    .project-card.large {
+      min-height: 520px;
+    }
+
+    .project-visual {
+      position: relative;
+      flex: 1;
+      min-height: 240px;
+      background:
+        linear-gradient(135deg, rgba(249, 115, 22, 0.82), rgba(249, 115, 22, 0.08) 42%, rgba(41, 37, 36, 0.42)),
+        repeating-linear-gradient(90deg, rgba(255, 255, 255, 0.28) 0 1px, transparent 1px 18px);
+    }
+
+    .project-visual.alt {
+      background:
+        radial-gradient(circle at 72% 22%, rgba(230, 255, 26, 0.85), transparent 14%),
+        linear-gradient(160deg, rgba(41, 37, 36, 0.78), rgba(120, 113, 108, 0.22)),
+        repeating-linear-gradient(0deg, rgba(255, 255, 255, 0.18) 0 1px, transparent 1px 16px);
+    }
+
+    .project-visual.third {
+      background:
+        radial-gradient(circle at 18% 78%, rgba(249, 115, 22, 0.76), transparent 20%),
+        linear-gradient(45deg, rgba(255, 255, 255, 0.82), rgba(120, 113, 108, 0.34)),
+        repeating-linear-gradient(45deg, rgba(41, 37, 36, 0.13) 0 1px, transparent 1px 20px);
+    }
+
+    .project-visual.has-image {
+      background-size: cover;
+      background-position: center;
+    }
+
+    .project-info,
+    .service,
+    .process-step,
+    .about-panel,
+    .contact-panel {
+      padding: 24px;
+    }
+
+    .project-info {
+      display: flex;
+      align-items: flex-end;
+      justify-content: space-between;
+      gap: 24px;
+    }
+
+    .project-info h3,
+    .service h3,
+    .process-step h3 {
+      margin: 0;
+      color: var(--ink);
+      font-size: 20px;
+      font-weight: 500;
+      line-height: 24px;
+      letter-spacing: 0;
+    }
+
+    .project-info p,
+    .service p,
+    .process-step p,
+    .about-panel p,
+    .contact-panel p {
+      margin: 8px 0 0;
+      max-width: 420px;
+      color: var(--body);
+    }
+
+    .services-grid {
+      display: grid;
+      grid-template-columns: repeat(3, minmax(0, 1fr));
+      gap: 8px;
+    }
+
+    .service {
+      min-height: 220px;
+      border-radius: 32px;
+      display: flex;
+      flex-direction: column;
+      justify-content: space-between;
+    }
+
+    .service-index {
+      width: 40px;
+      height: 40px;
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      border: 1px solid var(--stone-light);
+      border-radius: 9999px;
+      color: var(--orange);
+      background: rgba(255, 255, 255, 0.42);
+    }
+
+    .process-list {
+      display: grid;
+      grid-template-columns: repeat(4, minmax(0, 1fr));
+      gap: 8px;
+    }
+
+    .process-step {
+      min-height: 240px;
+      border-radius: 32px;
+    }
+
+    .process-line {
+      width: 100%;
+      height: 1px;
+      margin: 24px 0;
+      background: linear-gradient(90deg, var(--orange), rgba(214, 211, 209, 0));
+    }
+
+    .about {
+      display: grid;
+      grid-template-columns: 0.9fr 1.1fr;
+      gap: 8px;
+    }
+
+    .portrait {
+      min-height: 520px;
+      border-radius: 32px;
+      border: 1px solid rgba(214, 211, 209, 0.9);
+      background:
+        radial-gradient(circle at 50% 25%, rgba(249, 115, 22, 0.62), transparent 15%),
+        radial-gradient(circle at 50% 46%, rgba(41, 37, 36, 0.72), transparent 18%),
+        linear-gradient(180deg, rgba(214, 211, 209, 0.7), rgba(120, 113, 108, 0.26)),
+        repeating-linear-gradient(90deg, rgba(255, 255, 255, 0.3) 0 1px, transparent 1px 24px);
+      box-shadow: rgba(0, 0, 0, 0.05) -20px -20px 60px 0;
+    }
+
+    .about-panel {
+      min-height: 520px;
+      border-radius: 32px;
+      display: flex;
+      flex-direction: column;
+      justify-content: space-between;
+    }
+
+    .quote {
+      margin: 0;
+      color: var(--ink);
+      font-size: clamp(28px, 5vw, 72px);
+      font-weight: 500;
+      line-height: 0.95;
+      letter-spacing: -0.05em;
+      text-transform: uppercase;
+    }
+
+    .contact-panel {
+      min-height: 360px;
+      border-radius: 32px;
+      display: grid;
+      grid-template-columns: 1fr 360px;
+      gap: 48px;
+      align-items: end;
+      background:
+        linear-gradient(to right top, rgba(249, 115, 22, 0.14), rgba(255, 255, 255, 0.54)),
+        rgba(255, 255, 255, 0.5);
+    }
+
+    .contact-title {
+      margin: 0;
+      color: var(--ink);
+      font-size: clamp(44px, 10vw, 144px);
+      font-weight: 500;
+      line-height: 0.82;
+      letter-spacing: -0.05em;
+      text-transform: uppercase;
+    }
+
+    .contact-links {
+      display: flex;
+      flex-direction: column;
+      gap: 8px;
+    }
+
+    .footer {
+      display: flex;
+      justify-content: space-between;
+      gap: 24px;
+      padding: 32px 0 0;
+      color: var(--muted);
+      border-top: 1px solid rgba(214, 211, 209, 0.9);
+    }
+
+    .admin-view {
+      display: none;
+      min-height: calc(100vh - 104px);
+      padding: 72px 0 48px;
+    }
+
+    body.admin-mode .site-view {
+      display: none;
+    }
+
+    body.admin-mode .logo-panel {
+      display: none;
+    }
+
+    body.admin-mode .admin-view {
+      display: block;
+    }
+
+    .admin-layout {
+      display: grid;
+      grid-template-columns: 280px minmax(0, 1fr);
+      gap: 8px;
+      align-items: start;
+    }
+
+    .admin-panel,
+    .admin-card {
+      border: 1px solid rgba(214, 211, 209, 0.9);
+      border-radius: 32px;
+      background: rgba(255, 255, 255, 0.56);
+      box-shadow: rgba(0, 0, 0, 0.05) -20px -20px 60px 0;
+      backdrop-filter: blur(16px);
+    }
+
+    .admin-panel {
+      position: sticky;
+      top: 96px;
+      padding: 24px;
+    }
+
+    .admin-card {
+      padding: 24px;
+      min-width: 0;
+      overflow-wrap: anywhere;
+    }
+
+    .admin-stack {
+      display: grid;
+      gap: 8px;
+    }
+
+    .admin-tabs,
+    .admin-actions,
+    .admin-list,
+    .range-row {
+      display: flex;
+      gap: 8px;
+      flex-wrap: wrap;
+    }
+
+    .admin-tabs {
+      flex-direction: column;
+      margin-top: 24px;
+    }
+
+    .admin-tab {
+      min-height: 36px;
+      justify-content: flex-start;
+      width: 100%;
+      white-space: normal;
+      text-align: left;
+      letter-spacing: 1.2px;
+    }
+
+    .admin-tab.is-active {
+      color: var(--on-primary);
+      border-color: var(--orange);
+      background: var(--orange);
+    }
+
+    .admin-title {
+      margin: 0;
+      color: var(--ink);
+      font-size: 28px;
+      font-weight: 600;
+      line-height: 34px;
+      letter-spacing: 0;
+      text-transform: uppercase;
+      white-space: nowrap;
+    }
+
+    .admin-subtitle {
+      margin: 12px 0 0;
+      max-width: 560px;
+      font-size: 13px;
+      line-height: 18px;
+    }
+
+    .admin-card .section-title {
+      max-width: 100%;
+      font-size: clamp(28px, 4.5vw, 56px);
+      line-height: 1;
+      letter-spacing: 0;
+      overflow-wrap: anywhere;
+    }
+
+    .admin-form {
+      display: grid;
+      gap: 12px;
+      margin-top: 24px;
+    }
+
+    .admin-form label {
+      display: grid;
+      gap: 6px;
+      color: var(--muted);
+      font-size: 11px;
+      line-height: 16px;
+      letter-spacing: 1.2px;
+      text-transform: uppercase;
+    }
+
+    .admin-form input,
+    .admin-form textarea {
+      width: 100%;
+      min-height: 40px;
+      padding: 10px 12px;
+      border: 1px solid var(--stone-light);
+      border-radius: 16px;
+      color: var(--ink);
+      background: rgba(255, 255, 255, 0.64);
+      outline: none;
+      font-size: 14px;
+      line-height: 20px;
+    }
+
+    .admin-form textarea {
+      min-height: 96px;
+      resize: vertical;
+    }
+
+    .admin-check {
+      display: flex;
+      grid-template-columns: none;
+      align-items: center;
+      gap: 8px;
+      min-height: 28px;
+      letter-spacing: 1px;
+    }
+
+    .admin-check input {
+      width: 16px;
+      min-height: 16px;
+      flex: 0 0 auto;
+      padding: 0;
+    }
+
+    .admin-form input:focus,
+    .admin-form textarea:focus {
+      border-color: var(--orange);
+    }
+
+    .range-row {
+      align-items: center;
+    }
+
+    .range-row input[type="range"] {
+      flex: 1 1 220px;
+    }
+
+    .range-value {
+      min-width: 56px;
+      color: var(--ink);
+      font-size: 14px;
+      font-weight: 700;
+      line-height: 20px;
+      text-align: right;
+    }
+
+    .video-upload-row {
+      display: grid;
+      grid-template-columns: minmax(0, 1fr) auto;
+      gap: 12px;
+      align-items: end;
+    }
+
+    .video-status {
+      width: 14px;
+      height: 14px;
+      margin-bottom: 13px;
+      border: 1px solid rgba(120, 113, 108, 0.28);
+      border-radius: 9999px;
+      background: rgba(168, 162, 158, 0.36);
+      box-shadow: inset 0 1px 0 rgba(255, 255, 255, 0.62);
+    }
+
+    .video-status.is-loaded {
+      border-color: rgba(34, 197, 94, 0.58);
+      background: #22c55e;
+      box-shadow:
+        0 0 0 4px rgba(34, 197, 94, 0.14),
+        0 0 16px rgba(34, 197, 94, 0.46);
+    }
+
+    .admin-work-item {
+      display: grid;
+      grid-template-columns: minmax(0, 1fr) auto;
+      gap: 12px;
+      width: 100%;
+      padding: 16px;
+      border: 1px solid rgba(214, 211, 209, 0.9);
+      border-radius: 24px;
+      background: rgba(255, 255, 255, 0.42);
+      overflow-wrap: anywhere;
+    }
+
+    .admin-work-item h3 {
+      margin: 4px 0 0;
+      color: var(--ink);
+      font-size: 16px;
+      font-weight: 500;
+      line-height: 21px;
+    }
+
+    .admin-thumb {
+      width: 72px;
+      height: 72px;
+      flex: 0 0 auto;
+      border: 1px solid rgba(214, 211, 209, 0.9);
+      border-radius: 18px;
+      object-fit: cover;
+      background: rgba(255, 255, 255, 0.5);
+    }
+
+    .admin-message {
+      min-height: 16px;
+      color: var(--orange);
+      font-size: 13px;
+      line-height: 18px;
+    }
+
+    .admin-actions .button,
+    .admin-list .button {
+      min-height: 34px;
+      white-space: normal;
+      letter-spacing: 1px;
+    }
+
+    /* Отключение стеклянных подложек и фоновых декоративных слоев. */
+    .fallback-bg,
+.fallback-bg::before,
+.fallback-bg::after {
+  display: none;
+}
+
+#particle-bg {
+  display: block;
+}
+
+    body {
+      background: var(--paper);
+    }
+
+    .topbar,
+    .logo-panel,
+    .video-card,
+    .project-card,
+    .service,
+    .process-step,
+    .about-panel,
+    .contact-panel,
+    .admin-panel,
+    .admin-card,
+    .admin-work-item {
+      background: transparent;
+      box-shadow: none;
+      backdrop-filter: none;
+    }
+
+    .topbar,
+    .logo-panel, 
+    .video-card,
+    .project-card,
+    .service,
+    .process-step,
+    .about-panel,
+    .contact-panel,
+    .admin-panel,
+    .admin-card,
+    .admin-work-item {
+      background: rgba(255, 255, 255, var(--surface-opacity));
+    }
+	.logo-panel {background: transparent;border-color: transparent;}
+
+    .button,
+    .button:hover,
+    .service-index,
+    .admin-form input,
+    .admin-form textarea,
+    .admin-thumb {
+      background: var(--white);
+      box-shadow: none;
+      backdrop-filter: none;
+    }
+
+    .button.primary {
+      color: var(--on-primary);
+      border-color: var(--orange);
+      background: var(--orange);
+    }
+
+    .button.primary:hover {
+      color: var(--ink);
+      border-color: var(--lime);
+      background: var(--lime);
+    }
+
+    @media (max-width: 960px) {
+      .page {
+        padding: 24px;
+      }
+
+      .topbar,
+      .section-head,
+      .work-grid,
+      .about,
+      .contact-panel,
+      .admin-layout {
+        grid-template-columns: 1fr;
+      }
+
+      .topbar {
+        align-items: flex-start;
+        gap: 12px;
+      }
+
+      .nav {
+        grid-column: 1 / -1;
+        grid-template-columns: repeat(3, minmax(0, 1fr));
+        justify-content: flex-start;
+        gap: 12px;
+      }
+
+      .nav-pair {
+        justify-content: flex-start;
+      }
+
+      .logo-panel {
+        min-height: clamp(220px, 44vw, 340px);
+      }
+
+      .video-grid {
+        grid-template-columns: 1fr;
+      }
+
+      .video-card {
+        min-height: 520px;
+      }
+
+      .services-grid,
+      .process-list {
+        grid-template-columns: repeat(2, minmax(0, 1fr));
+      }
+
+      .contact-panel {
+        gap: 32px;
+      }
+
+      .admin-panel {
+        position: static;
+      }
+    }
+
+    @media (max-width: 620px) {
+      .page {
+        padding: 16px;
+      }
+
+      .services-grid,
+      .process-list {
+        grid-template-columns: 1fr;
+      }
+
+      .brand,
+      .nav {
+        font-size: 10px;
+        line-height: 15px;
+        letter-spacing: 1.3px;
+      }
+
+      .nav {
+        grid-template-columns: repeat(2, minmax(0, 1fr));
+      }
+
+      .nav a,
+      .nav-pair {
+        text-align: left;
+      }
+
+      .nav-pair {
+        justify-content: flex-start;
+        gap: 14px;
+      }
+
+      .nav-hamster {
+        width: 30px;
+        height: 22px;
+      }
+
+      .video-card {
+        min-height: 420px;
+      }
+
+      .project-card.large,
+      .project-card,
+      .portrait,
+      .about-panel {
+        min-height: 360px;
+      }
+
+      .project-info {
+        align-items: flex-start;
+        flex-direction: column;
+      }
+
+      .footer {
+        flex-direction: column;
+      }
+    }
+
+    @media (prefers-reduced-motion: reduce) {
+      .nav-hamster {
+        display: none;
+      }
+    }
+  </style>
+</head>
+<body>
+  <!-- Фоновый слой: серая стеклянная подложка и canvas с оранжевыми частицами -->
+  <div class="fallback-bg" aria-hidden="true"></div>
+  <canvas id="particle-bg" aria-hidden="true"></canvas>
+
+  <!-- Основная страница сайта -->
+  <main class="page">
+    <!-- Большой логотип главного экрана -->
+    <section class="logo-panel" id="top" aria-label="Логотип">
+      <h1 class="hero-title">LAZEBNYI</h1>
+    </section>
+
+    <!-- Шапка сайта: навигация по разделам -->
+    <header class="topbar">
+      <a class="brand" href="#top" aria-label="На главную">
+        <span class="brand-mark" aria-hidden="true"></span>
+        <span>Georgy Lazebnyi</span>
+      </a>
+      <nav class="nav" aria-label="Основная навигация">
+        <a href="#works-page">Работы</a>
+        <a href="#services">Направления</a>
+        <a href="#process">Процесс</a>
+        <a href="#about">О себе</a>
+        <a href="#contact">Контакты</a>
+      </nav>
+      <div class="nav-hamster" id="nav-hamster" aria-hidden="true">
+        <span class="hamster-body"></span>
+        <span class="hamster-head">
+          <span class="hamster-ear"></span>
+          <span class="hamster-eye"></span>
+          <span class="hamster-nose"></span>
+          <span class="hamster-whisker one"></span>
+          <span class="hamster-whisker two"></span>
+        </span>
+        <span class="hamster-paw front"></span>
+        <span class="hamster-paw back"></span>
+      </div>
+    </header>
+
+    <div class="site-view">
+    <!-- Главный экран: три видео-блока вместо старой карусели -->
+    <section class="hero" aria-label="Видео-превью">
+      <div class="video-grid" id="hero-video-grid"></div>
+    </section>
+
+    <!-- Раздел работ: примеры проектов и кейсов -->
+    <section class="section" id="work">
+      <div class="section-head">
+        <span class="label">01 / Работы</span>
+        <h2 class="section-title">Видео, фото и графика для брендов, артистов и медиа</h2>
+      </div>
+
+      <div class="work-grid" id="work-grid">
+      </div>
+    </section>
+
+    <!-- Раздел направлений: услуги и типы задач -->
+    <section class="section" id="services">
+      <div class="section-head">
+        <span class="label">02 / Направления</span>
+        <h2 class="section-title">Что входит в работу</h2>
+      </div>
+
+      <div class="services-grid">
+        <article class="service">
+          <span class="service-index">01</span>
+          <div>
+            <h3>Режиссура и продакшн</h3>
+            <p>Концепция, сценарная структура, подготовка съёмки, работа на площадке и контроль финального результата.</p>
+          </div>
+        </article>
+        <article class="service">
+          <span class="service-index">02</span>
+          <div>
+            <h3>Операторская работа и фото</h3>
+            <p>Свет, кадр, визуальный стиль, репортажная и постановочная съёмка для коммерческих и авторских задач.</p>
+          </div>
+        </article>
+        <article class="service">
+          <span class="service-index">03</span>
+          <div>
+            <h3>Монтаж, цвет и графика</h3>
+            <p>Постпродакшн полного цикла: монтаж, цветокоррекция, звук, титры, motion-графика и адаптация под площадки.</p>
+          </div>
+        </article>
+      </div>
+    </section>
+
+    <!-- Раздел процесса: этапы работы над проектом -->
+    <section class="section" id="process">
+      <div class="section-head">
+        <span class="label">03 / Процесс</span>
+        <h2 class="section-title">Полный цикл работы с видеоконтентом</h2>
+      </div>
+
+      <div class="process-list">
+        <article class="process-step">
+          <span class="meta">Шаг 01</span>
+          <div class="process-line"></div>
+          <h3>Предпродакшн</h3>
+          <p>Фиксируем задачу, формат, референсы, сценарный ход, локации, график и состав команды.</p>
+        </article>
+        <article class="process-step">
+          <span class="meta">Шаг 02</span>
+          <div class="process-line"></div>
+          <h3>Продакшн</h3>
+          <p>Организуем съёмку, свет, кадр, звук и работу с героями, продуктом или артистом.</p>
+        </article>
+        <article class="process-step">
+          <span class="meta">Шаг 03</span>
+          <div class="process-line"></div>
+          <h3>Постпродакшн</h3>
+          <p>Собираем монтаж, делаем цвет, звук, титры, графику и версии под разные форматы.</p>
+        </article>
+        <article class="process-step">
+          <span class="meta">Шаг 04</span>
+          <div class="process-line"></div>
+          <h3>Публикация</h3>
+          <p>Готовим финальные файлы для рекламы, соцсетей, презентаций, YouTube, Reels и TikTok.</p>
+        </article>
+      </div>
+    </section>
+
+    <!-- Раздел о себе: позиционирование, подход и краткая биография -->
+    <section class="section" id="about">
+      <div class="section-head">
+        <span class="label">04 / О себе</span>
+        <h2 class="section-title">Режиссура, съёмка и постпродакшн</h2>
+      </div>
+
+      <div class="about">
+        <div class="portrait" aria-label="Абстрактный визуальный блок портрета"></div>
+        <div class="about-panel">
+          <blockquote class="quote" id="about-quote">Создаю видео и фото от идеи до финального файла: режиссура, съёмка, монтаж, графика и цвет.</blockquote>
+          <div>
+            <p id="about-text">Меня зовут Георгий Лазебный. Я больше 10 лет работаю как режиссёр, оператор-постановщик, фотограф, специалист по монтажу и графике. Беру задачи полного цикла: предпродакшн, продакшн и постпродакшн.</p>
+            <p id="about-note">Работал с музыкальными клипами, рекламными роликами, документальными фильмами, имиджевыми и репутационными видео, интервью, подкастами, бэкстэйджами, Reels, TikTok и реактивным контентом. Опыт включает проекты для Adidas Russia, Playtronica, Burger King, Garmin, Gillette, Under Armour, Esquire, Ozon, ТВОЕ и Sunlight.</p>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- Раздел контактов: способы связи и полезные ссылки -->
+    <section class="section" id="contact">
+      <div class="contact-panel">
+        <div>
+          <span class="label">05 / Контакты</span>
+          <h2 class="contact-title">Обсудить проект</h2>
+        </div>
+        <div class="contact-links">
+          <p id="contact-description">Для связи можно указать почту, Telegram, портфолио или ссылку на медиакит. Контакты редактируются в админ-разделе.</p>
+          <a class="button primary" id="contact-email" href="mailto:hello@example.com">hello@example.com</a>
+          <a class="button" id="contact-telegram" href="#">Telegram</a>
+          <a class="button" id="contact-media" href="#">Media kit</a>
+        </div>
+      </div>
+    </section>
+    </div>
+
+    <section class="admin-view" id="admin" aria-label="Административная зона">
+      <div class="admin-layout">
+        <aside class="admin-panel">
+          <h1 class="admin-title">Настройки</h1>
+          <p class="admin-subtitle">Вход по коду и управление содержанием сайта.</p>
+          <div class="admin-tabs" id="admin-tabs" hidden>
+            <button class="button admin-tab is-active" type="button" data-admin-tab="works">Работы</button>
+            <button class="button admin-tab" type="button" data-admin-tab="videos">Видео</button>
+            <button class="button admin-tab" type="button" data-admin-tab="descriptions">Описания</button>
+            <button class="button admin-tab" type="button" data-admin-tab="contacts">Контакты</button>
+            <button class="button admin-tab" type="button" data-admin-tab="appearance">Прозрачность</button>
+          </div>
+          <button class="button" id="admin-logout" type="button" hidden>Выйти</button>
+        </aside>
+
+        <div class="admin-stack">
+          <section class="admin-card" id="admin-login-card">
+            <span class="label">Авторизация администратора</span>
+            <h2 class="section-title">Вход по коду</h2>
+            <form class="admin-form" id="admin-login-form">
+              <label>
+                Код
+                <input id="admin-code" type="password" inputmode="numeric" autocomplete="one-time-code" placeholder="Введите код">
+              </label>
+              <div class="admin-actions">
+                <button class="button primary" type="submit">Войти</button>
+                <a class="button" href="#top">На сайт</a>
+              </div>
+              <p class="admin-message" id="admin-login-message">Код по умолчанию: 2468</p>
+            </form>
+          </section>
+
+          <section class="admin-card" data-admin-panel="works" hidden>
+            <span class="label">Загрузка / редактирование / удаление работ</span>
+            <form class="admin-form" id="work-form">
+              <input id="work-id" type="hidden">
+              <label>
+                Категория
+                <input id="work-meta" type="text" required placeholder="Fashion / Reels">
+              </label>
+              <label>
+                Название
+                <input id="work-title" type="text" required placeholder="Название работы">
+              </label>
+              <label>
+                Описание
+                <textarea id="work-description" placeholder="Короткое описание"></textarea>
+              </label>
+              <label>
+                Изображение
+                <input id="work-image" type="file" accept="image/*">
+              </label>
+              <label class="admin-check">
+                <input id="work-remove-image" type="checkbox">
+                Удалить изображение у этой работы
+              </label>
+              <div class="admin-actions">
+                <button class="button primary" type="submit">Сохранить работу</button>
+                <button class="button" id="work-reset" type="button">Новая работа</button>
+              </div>
+              <p class="admin-message" id="work-message"></p>
+            </form>
+            <div class="admin-list" id="admin-work-list"></div>
+          </section>
+
+          <section class="admin-card" data-admin-panel="descriptions" hidden>
+            <span class="label">Управление описаниями</span>
+            <form class="admin-form" id="descriptions-form">
+              <label>
+                Цитата в блоке “О себе”
+                <textarea id="admin-about-quote" required></textarea>
+              </label>
+              <label>
+                Основное описание
+                <textarea id="admin-about-text" required></textarea>
+              </label>
+              <label>
+                Дополнительное описание
+                <textarea id="admin-about-note" required></textarea>
+              </label>
+              <label>
+                Изображение блока “О себе”
+                <input id="admin-about-image" type="file" accept="image/*">
+              </label>
+              <label class="admin-check">
+                <input id="admin-about-remove-image" type="checkbox">
+                Удалить изображение блока
+              </label>
+              <button class="button primary" type="submit">Сохранить описания</button>
+              <p class="admin-message" id="descriptions-message"></p>
+            </form>
+          </section>
+
+          <section class="admin-card" data-admin-panel="videos" hidden>
+            <span class="label">Управление видео на главной</span>
+            <form class="admin-form" id="videos-form">
+              <div class="video-upload-row">
+                <label>
+                  Видео 01
+                  <input id="hero-video-1" type="file" accept="video/mp4,video/webm,video/ogg">
+                </label>
+                <span class="video-status" id="hero-video-status-1" aria-label="Видео 01 не загружено"></span>
+              </div>
+              <div class="video-upload-row">
+                <label>
+                  Видео 02
+                  <input id="hero-video-2" type="file" accept="video/mp4,video/webm,video/ogg">
+                </label>
+                <span class="video-status" id="hero-video-status-2" aria-label="Видео 02 не загружено"></span>
+              </div>
+              <div class="video-upload-row">
+                <label>
+                  Видео 03
+                  <input id="hero-video-3" type="file" accept="video/mp4,video/webm,video/ogg">
+                </label>
+                <span class="video-status" id="hero-video-status-3" aria-label="Видео 03 не загружено"></span>
+              </div>
+              <button class="button primary" type="submit">Сохранить видео</button>
+              <p class="admin-message" id="videos-message"></p>
+            </form>
+          </section>
+
+          <section class="admin-card" data-admin-panel="contacts" hidden>
+            <span class="label">Управление контактами</span>
+            <form class="admin-form" id="contacts-form">
+              <label>
+                Текст блока
+                <textarea id="admin-contact-description" required></textarea>
+              </label>
+              <label>
+                Email
+                <input id="admin-contact-email" type="email" required>
+              </label>
+              <label>
+                Telegram ссылка
+                <input id="admin-contact-telegram" type="url" required>
+              </label>
+              <label>
+                Media kit ссылка
+                <input id="admin-contact-media" type="url" required>
+              </label>
+              <button class="button primary" type="submit">Сохранить контакты</button>
+              <p class="admin-message" id="contacts-message"></p>
+            </form>
+          </section>
+
+          <section class="admin-card" data-admin-panel="appearance" hidden>
+            <span class="label">Настройки внешнего вида</span>
+            <form class="admin-form" id="appearance-form">
+              <label>
+                Прозрачность блоков
+                <div class="range-row">
+                  <input id="surface-opacity" type="range" min="0" max="100" step="1">
+                  <span class="range-value" id="surface-opacity-value">0%</span>
+                </div>
+              </label>
+              <button class="button primary" type="submit">Сохранить вид</button>
+              <p class="admin-message" id="appearance-message"></p>
+            </form>
+          </section>
+        </div>
+      </div>
+    </section>
+
+    <!-- Подвал сайта: служебная информация о макете -->
+    <footer class="footer">
+      <span class="meta">Content Maker Portfolio</span>
+    </footer>
+  </main>
+
+  <!-- Canvas-скрипт: рисует оранжевые частицы с инерцией и эффектом ветра от курсора -->
+  <script>
+    (function () {
+      var STORAGE_KEY = 'portfolio-admin-content-v2';
+      var SESSION_KEY = 'portfolio-admin-session-v1';
+      var ADMIN_CODE = '2468';
+      var MAX_VIDEO_SIZE_BYTES = 2 * 1024 * 1024;
+      var SUPPORTED_VIDEO_TYPES = ['video/mp4', 'video/webm', 'video/ogg'];
+      var defaultData = {
+        works: [
+          {
+            id: 'work-1',
+            meta: 'Full Cycle / Video Production',
+            title: 'Видеопродакшн полного цикла',
+            description: 'Предпродакшн, съёмка, монтаж, цвет, звук, графика и подготовка финальных версий для площадок.',
+            image: '',
+            visual: ''
+          },
+          {
+            id: 'work-2',
+            meta: 'Music / Ads / Documentary',
+            title: 'Клипы, реклама и документальные форматы',
+            description: 'Музыкальные клипы, рекламные ролики, документальные фильмы, интервью, подкасты и бэкстэйджи.',
+            image: '',
+            visual: 'alt'
+          },
+          {
+            id: 'work-3',
+            meta: 'Brands / Motion',
+            title: 'Коммерческий контент и motion-графика',
+            description: 'Видеоматериалы и графика для брендов топ-сегмента, включая ТВОЕ, Sunlight, Adidas Russia и Playtronica.',
+            image: '',
+            visual: 'third'
+          }
+        ],
+        descriptions: {
+          aboutQuote: 'Создаю видео и фото от идеи до финального файла: режиссура, съёмка, монтаж, графика и цвет.',
+          aboutText: 'Меня зовут Георгий Лазебный. Я больше 10 лет работаю как режиссёр, оператор-постановщик, фотограф, специалист по монтажу и графике. Беру задачи полного цикла: предпродакшн, продакшн и постпродакшн.',
+          aboutNote: 'Работал с музыкальными клипами, рекламными роликами, документальными фильмами, имиджевыми и репутационными видео, интервью, подкастами, бэкстэйджами, Reels, TikTok и реактивным контентом. Продвинутый уровень: Final Cut Pro, Adobe Premiere Pro, DaVinci Resolve, Adobe Lightroom, Adobe After Effects, Adobe Audition, Cinema 4D, Adobe Photoshop, Blender и Capture One. Опыт включает проекты для Adidas Russia, Playtronica, Burger King, Garmin, Gillette, Under Armour, Esquire, Ozon, ТВОЕ и Sunlight.',
+          portraitImage: ''
+        },
+        contacts: {
+          description: 'Для связи можно указать почту, Telegram, портфолио или ссылку на медиакит. Контакты редактируются в админ-разделе.',
+          email: 'hello@example.com',
+          telegram: 'https://t.me/example',
+          media: 'https://example.com/media-kit'
+        },
+        videos: {
+          slots: [
+            { id: 'video-1', name: '1.mp4', type: 'video/mp4', src: '../assets/videos/1.mp4' },
+            { id: 'video-2', name: '2.mov', type: 'video/quicktime', src: '../assets/videos/2.mov' },
+            { id: 'video-3', name: '3.mov', type: 'video/quicktime', src: '../assets/videos/3.mov' }
+          ]
+        },
+        appearance: {
+          surfaceOpacity: 0
+        }
+      };
+
+      var data = loadData();
+      var activeAdminTab = 'works';
+
+      function loadData() {
+        try {
+          var saved = JSON.parse(localStorage.getItem(STORAGE_KEY));
+          if (!saved) return copyDefaultData();
+
+          return {
+            works: Array.isArray(saved.works) ? saved.works : copyDefaultData().works,
+            descriptions: Object.assign({}, defaultData.descriptions, saved.descriptions || {}),
+            contacts: Object.assign({}, defaultData.contacts, saved.contacts || {}),
+            videos: normalizeVideos(saved.videos),
+            appearance: normalizeAppearance(saved.appearance)
+          };
+        } catch (error) {
+          return copyDefaultData();
+        }
+      }
+
+      function normalizeVideos(videos) {
+        var savedSlots = videos && Array.isArray(videos.slots) ? videos.slots : [];
+        return {
+          slots: defaultData.videos.slots.map(function (slot, index) {
+            var savedSlot = savedSlots[index] || {};
+            return Object.assign({}, slot, savedSlot.src ? savedSlot : {});
+          })
+        };
+      }
+
+      function normalizeAppearance(appearance) {
+        var opacity = Number(appearance && appearance.surfaceOpacity);
+        if (!Number.isFinite(opacity)) opacity = defaultData.appearance.surfaceOpacity;
+        return {
+          surfaceOpacity: Math.min(1, Math.max(0, opacity))
+        };
+      }
+
+      function copyDefaultData() {
+        return JSON.parse(JSON.stringify(defaultData));
+      }
+
+      function saveData() {
+        try {
+          localStorage.setItem(STORAGE_KEY, JSON.stringify(data));
+          return true;
+        } catch (error) {
+          return false;
+        }
+      }
+
+      function formatFileSize(bytes) {
+        if (bytes >= 1024 * 1024) {
+          return (bytes / 1024 / 1024).toFixed(1).replace('.0', '') + ' МБ';
+        }
+
+        return Math.ceil(bytes / 1024) + ' КБ';
+      }
+
+      function isAdminRoute() {
+        return window.location.hash === '#admin' || /\/admin\/?$/.test(window.location.pathname);
+      }
+
+      function syncRoute() {
+        document.body.classList.toggle('admin-mode', isAdminRoute());
+        renderAdmin();
+      }
+
+      function setText(id, value) {
+        var element = document.getElementById(id);
+        if (element) element.textContent = value;
+      }
+
+      function applyAppearance() {
+        document.documentElement.style.setProperty('--surface-opacity', String(data.appearance.surfaceOpacity));
+      }
+
+      function updateOpacityControl() {
+        var input = document.getElementById('surface-opacity');
+        var value = document.getElementById('surface-opacity-value');
+        if (!input || !value) return;
+
+        var percent = Math.round(data.appearance.surfaceOpacity * 100);
+        input.value = String(percent);
+        value.textContent = percent + '%';
+      }
+
+      function renderPublicSite() {
+        var workGrid = document.getElementById('work-grid');
+        var descriptions = data.descriptions;
+        var contacts = data.contacts;
+        applyAppearance();
+        renderHeroVideos();
+
+        function createWorkCard(work, index) {
+          var card = document.createElement('article');
+          card.className = 'project-card' + (index === 0 ? ' large' : '');
+          if (index > 0) card.style.marginTop = '8px';
+
+          var visual = document.createElement('div');
+          visual.className = 'project-visual' + (work.visual ? ' ' + work.visual : '');
+          visual.setAttribute('aria-hidden', 'true');
+          if (work.image) {
+            visual.className += ' has-image';
+            visual.style.backgroundImage = 'linear-gradient(135deg, rgba(41, 37, 36, 0.18), rgba(249, 115, 22, 0.1)), url("' + work.image + '")';
+          }
+
+          var info = document.createElement('div');
+          info.className = 'project-info';
+
+          var text = document.createElement('div');
+          var meta = document.createElement('span');
+          meta.className = 'meta';
+          meta.textContent = work.meta;
+          var title = document.createElement('h3');
+          title.textContent = work.title;
+          text.append(meta, title);
+
+          if (work.description) {
+            var description = document.createElement('p');
+            description.textContent = work.description;
+            text.appendChild(description);
+          }
+
+          info.appendChild(text);
+          if (index === 0) {
+            var link = document.createElement('a');
+            link.className = 'button';
+            link.href = '#contact';
+            link.textContent = 'Запросить кейс';
+            info.appendChild(link);
+          }
+
+          card.append(visual, info);
+          return card;
+        }
+
+        workGrid.innerHTML = '';
+        data.works.forEach(function (work, index) {
+          if (index === 0) {
+            workGrid.appendChild(createWorkCard(work, index));
+            return;
+          }
+
+          var sideColumn = workGrid.querySelector('[data-work-side]');
+          if (!sideColumn) {
+            sideColumn = document.createElement('div');
+            sideColumn.setAttribute('data-work-side', '');
+            workGrid.appendChild(sideColumn);
+          }
+
+          sideColumn.appendChild(createWorkCard(work, index));
+        });
+
+        setText('about-quote', descriptions.aboutQuote);
+        setText('about-text', descriptions.aboutText);
+        setText('about-note', descriptions.aboutNote);
+        setText('contact-description', contacts.description);
+
+        var portrait = document.querySelector('.portrait');
+        if (portrait && descriptions.portraitImage) {
+          portrait.style.backgroundImage = 'linear-gradient(180deg, rgba(41, 37, 36, 0.12), rgba(249, 115, 22, 0.08)), url("' + descriptions.portraitImage + '")';
+          portrait.style.backgroundSize = 'cover';
+          portrait.style.backgroundPosition = 'center';
+        } else if (portrait) {
+          portrait.style.backgroundImage = '';
+          portrait.style.backgroundSize = '';
+          portrait.style.backgroundPosition = '';
+        }
+
+        var email = document.getElementById('contact-email');
+        var telegram = document.getElementById('contact-telegram');
+        var media = document.getElementById('contact-media');
+        if (email) {
+          email.textContent = contacts.email;
+          email.href = 'mailto:' + contacts.email;
+        }
+        if (telegram) telegram.href = contacts.telegram;
+        if (media) media.href = contacts.media;
+      }
+
+      function renderHeroVideos() {
+        var grid = document.getElementById('hero-video-grid');
+        if (!grid) return;
+
+        grid.innerHTML = '';
+        data.videos.slots.forEach(function (slot, index) {
+          var card = document.createElement('article');
+          card.className = 'video-card' + (slot.src ? ' has-video' : '');
+
+          if (slot.src) {
+            var video = document.createElement('video');
+            video.src = slot.src;
+            video.muted = true;
+            video.playsInline = true;
+            video.preload = 'metadata';
+            video.setAttribute('aria-label', 'Видео ' + String(index + 1).padStart(2, '0'));
+
+            card.addEventListener('mouseenter', function () {
+              video.play().catch(function () {});
+            });
+
+            card.addEventListener('mouseleave', function () {
+              video.pause();
+              video.currentTime = 0;
+            });
+
+            card.appendChild(video);
+          }
+
+          var placeholder = document.createElement('span');
+          placeholder.className = 'video-placeholder';
+          placeholder.textContent = slot.src ? '' : 'Видео ' + String(index + 1).padStart(2, '0');
+          card.appendChild(placeholder);
+          grid.appendChild(card);
+        });
+      }
+
+      function isLoggedIn() {
+        return sessionStorage.getItem(SESSION_KEY) === '1';
+      }
+
+      function renderAdmin() {
+        var loggedIn = isLoggedIn();
+        var loginCard = document.getElementById('admin-login-card');
+        var tabs = document.getElementById('admin-tabs');
+        var logout = document.getElementById('admin-logout');
+
+        loginCard.hidden = loggedIn;
+        tabs.hidden = !loggedIn;
+        logout.hidden = !loggedIn;
+
+        document.querySelectorAll('[data-admin-panel]').forEach(function (panel) {
+          panel.hidden = !loggedIn || panel.getAttribute('data-admin-panel') !== activeAdminTab;
+        });
+
+        document.querySelectorAll('[data-admin-tab]').forEach(function (tab) {
+          tab.classList.toggle('is-active', tab.getAttribute('data-admin-tab') === activeAdminTab);
+        });
+
+        if (loggedIn) {
+          fillAdminForms();
+          renderAdminWorkList();
+          updateVideoStatuses();
+          updateOpacityControl();
+        }
+      }
+
+      function fillAdminForms() {
+        document.getElementById('admin-about-quote').value = data.descriptions.aboutQuote;
+        document.getElementById('admin-about-text').value = data.descriptions.aboutText;
+        document.getElementById('admin-about-note').value = data.descriptions.aboutNote;
+        document.getElementById('admin-about-remove-image').checked = false;
+        document.getElementById('admin-contact-description').value = data.contacts.description;
+        document.getElementById('admin-contact-email').value = data.contacts.email;
+        document.getElementById('admin-contact-telegram').value = data.contacts.telegram;
+        document.getElementById('admin-contact-media').value = data.contacts.media;
+        updateOpacityControl();
+      }
+
+      function renderAdminWorkList() {
+        var list = document.getElementById('admin-work-list');
+        list.innerHTML = '';
+
+        data.works.forEach(function (work) {
+          var item = document.createElement('article');
+          item.className = 'admin-work-item';
+
+          var text = document.createElement('div');
+          var meta = document.createElement('span');
+          meta.className = 'meta';
+          meta.textContent = work.meta;
+          var title = document.createElement('h3');
+          title.textContent = work.title;
+          text.append(meta, title);
+
+          var actions = document.createElement('div');
+          actions.className = 'admin-actions';
+
+          var edit = document.createElement('button');
+          edit.className = 'button';
+          edit.type = 'button';
+          edit.textContent = 'Редактировать';
+          edit.addEventListener('click', function () {
+            startEditWork(work.id);
+          });
+
+          var remove = document.createElement('button');
+          remove.className = 'button';
+          remove.type = 'button';
+          remove.textContent = 'Удалить';
+          remove.addEventListener('click', function () {
+            deleteWork(work.id);
+          });
+
+          actions.append(edit, remove);
+          item.append(text, actions);
+          list.appendChild(item);
+        });
+      }
+
+      function updateVideoStatuses() {
+        data.videos.slots.forEach(function (slot, index) {
+          var status = document.getElementById('hero-video-status-' + (index + 1));
+          if (!status) return;
+
+          status.classList.toggle('is-loaded', Boolean(slot.src));
+          status.setAttribute(
+            'aria-label',
+            'Видео ' + String(index + 1).padStart(2, '0') + (slot.src ? ' загружено' : ' не загружено')
+          );
+        });
+      }
+
+      function startEditWork(id) {
+        var work = data.works.find(function (item) {
+          return item.id === id;
+        });
+        if (!work) return;
+
+        document.getElementById('work-id').value = work.id;
+        document.getElementById('work-meta').value = work.meta;
+        document.getElementById('work-title').value = work.title;
+        document.getElementById('work-description').value = work.description;
+        document.getElementById('work-remove-image').checked = false;
+        document.getElementById('work-message').textContent = 'Редактируется: ' + work.title;
+      }
+
+      function resetWorkForm() {
+        document.getElementById('work-form').reset();
+        document.getElementById('work-id').value = '';
+        document.getElementById('work-remove-image').checked = false;
+        document.getElementById('work-message').textContent = '';
+      }
+
+      function deleteWork(id) {
+        data.works = data.works.filter(function (work) {
+          return work.id !== id;
+        });
+        saveData();
+        renderPublicSite();
+        resetWorkForm();
+        renderAdminWorkList();
+      }
+
+      function clearVideoSlot(index) {
+        data.videos.slots[index] = Object.assign({}, defaultData.videos.slots[index]);
+        saveData();
+        renderPublicSite();
+        updateVideoStatuses();
+      }
+
+      function readImage(file, callback) {
+        if (!file) {
+          callback('');
+          return;
+        }
+
+        var reader = new FileReader();
+        reader.onload = function () {
+          callback(String(reader.result || ''));
+        };
+        reader.readAsDataURL(file);
+      }
+
+      function readVideo(file, callback) {
+        if (!file || SUPPORTED_VIDEO_TYPES.indexOf(file.type) === -1) {
+          callback(null);
+          return;
+        }
+
+        var reader = new FileReader();
+        reader.onload = function () {
+          callback({
+            name: file.name,
+            type: file.type,
+            src: String(reader.result || '')
+          });
+        };
+        reader.onerror = function () {
+          callback(null);
+        };
+        reader.readAsDataURL(file);
+      }
+
+      document.getElementById('admin-login-form').addEventListener('submit', function (event) {
+        event.preventDefault();
+        var code = document.getElementById('admin-code').value.trim();
+        var message = document.getElementById('admin-login-message');
+
+        if (code === ADMIN_CODE) {
+          sessionStorage.setItem(SESSION_KEY, '1');
+          document.getElementById('admin-code').value = '';
+          message.textContent = '';
+          renderAdmin();
+          return;
+        }
+
+        message.textContent = 'Код неверный.';
+      });
+
+      document.getElementById('admin-logout').addEventListener('click', function () {
+        sessionStorage.removeItem(SESSION_KEY);
+        renderAdmin();
+      });
+
+      document.querySelectorAll('[data-admin-tab]').forEach(function (tab) {
+        tab.addEventListener('click', function () {
+          activeAdminTab = tab.getAttribute('data-admin-tab');
+          renderAdmin();
+        });
+      });
+
+      document.getElementById('work-form').addEventListener('submit', function (event) {
+        event.preventDefault();
+        var id = document.getElementById('work-id').value;
+        var file = document.getElementById('work-image').files[0];
+        var shouldRemoveImage = document.getElementById('work-remove-image').checked;
+
+        readImage(file, function (image) {
+          var existing = data.works.find(function (work) {
+            return work.id === id;
+          });
+          var workData = {
+            id: id || 'work-' + Date.now(),
+            meta: document.getElementById('work-meta').value.trim(),
+            title: document.getElementById('work-title').value.trim(),
+            description: document.getElementById('work-description').value.trim(),
+            image: shouldRemoveImage ? '' : image || (existing ? existing.image : ''),
+            visual: existing ? existing.visual : ''
+          };
+
+          if (existing) {
+            Object.assign(existing, workData);
+          } else {
+            data.works.unshift(workData);
+          }
+
+          saveData();
+          renderPublicSite();
+          renderAdminWorkList();
+          resetWorkForm();
+          document.getElementById('work-message').textContent = 'Работа сохранена.';
+        });
+      });
+
+      document.getElementById('work-reset').addEventListener('click', resetWorkForm);
+
+      document.getElementById('descriptions-form').addEventListener('submit', function (event) {
+        event.preventDefault();
+        var file = document.getElementById('admin-about-image').files[0];
+        var shouldRemoveImage = document.getElementById('admin-about-remove-image').checked;
+
+        readImage(file, function (image) {
+          data.descriptions = {
+            aboutQuote: document.getElementById('admin-about-quote').value.trim(),
+            aboutText: document.getElementById('admin-about-text').value.trim(),
+            aboutNote: document.getElementById('admin-about-note').value.trim(),
+            portraitImage: shouldRemoveImage ? '' : image || data.descriptions.portraitImage || ''
+          };
+          saveData();
+          renderPublicSite();
+          document.getElementById('descriptions-form').reset();
+          fillAdminForms();
+          document.getElementById('descriptions-message').textContent = 'Описания сохранены.';
+        });
+      });
+
+      document.getElementById('videos-form').addEventListener('submit', function (event) {
+        event.preventDefault();
+        var inputs = [
+          document.getElementById('hero-video-1'),
+          document.getElementById('hero-video-2'),
+          document.getElementById('hero-video-3')
+        ];
+        var files = inputs.map(function (input) {
+          return input.files[0] || null;
+        });
+        var selected = files.filter(Boolean);
+        var message = document.getElementById('videos-message');
+
+        if (!selected.length) {
+          message.textContent = 'Выберите хотя бы одно видео.';
+          return;
+        }
+
+        var invalidFile = selected.find(function (file) {
+          return SUPPORTED_VIDEO_TYPES.indexOf(file.type) === -1;
+        });
+
+        if (invalidFile) {
+          message.textContent = 'Видео не загружено: нужен формат MP4, WebM или OGG.';
+          return;
+        }
+
+        var oversizedFile = selected.find(function (file) {
+          return file.size > MAX_VIDEO_SIZE_BYTES;
+        });
+
+        if (oversizedFile) {
+          message.textContent = 'Видео не загружено: файл "' + oversizedFile.name + '" весит ' + formatFileSize(oversizedFile.size) + '. Для этого прототипа максимум ' + formatFileSize(MAX_VIDEO_SIZE_BYTES) + '.';
+          return;
+        }
+
+        message.textContent = 'Видео загружается...';
+        var pending = selected.length;
+        files.forEach(function (file, index) {
+          if (!file) return;
+
+          readVideo(file, function (video) {
+            if (video) {
+              data.videos.slots[index] = Object.assign({}, defaultData.videos.slots[index], video);
+            }
+
+            pending -= 1;
+            if (pending === 0) {
+              if (!saveData()) {
+                message.textContent = 'Видео не сохранено: браузерное хранилище переполнено. Для публикации нужна серверная загрузка видео.';
+                return;
+              }
+
+              renderPublicSite();
+              updateVideoStatuses();
+              document.getElementById('videos-form').reset();
+              message.textContent = 'Видео сохранены.';
+            }
+          });
+        });
+      });
+
+      document.getElementById('contacts-form').addEventListener('submit', function (event) {
+        event.preventDefault();
+        data.contacts = {
+          description: document.getElementById('admin-contact-description').value.trim(),
+          email: document.getElementById('admin-contact-email').value.trim(),
+          telegram: document.getElementById('admin-contact-telegram').value.trim(),
+          media: document.getElementById('admin-contact-media').value.trim()
+        };
+        saveData();
+        renderPublicSite();
+        document.getElementById('contacts-message').textContent = 'Контакты сохранены.';
+      });
+
+      document.getElementById('surface-opacity').addEventListener('input', function (event) {
+        var percent = Number(event.target.value);
+        if (!Number.isFinite(percent)) percent = 0;
+
+        data.appearance.surfaceOpacity = Math.min(1, Math.max(0, percent / 100));
+        applyAppearance();
+        updateOpacityControl();
+      });
+
+      document.getElementById('appearance-form').addEventListener('submit', function (event) {
+        event.preventDefault();
+
+        if (!saveData()) {
+          document.getElementById('appearance-message').textContent = 'Настройки не сохранены: хранилище переполнено.';
+          return;
+        }
+
+        renderPublicSite();
+        document.getElementById('appearance-message').textContent = 'Вид сохранён.';
+      });
+
+      window.addEventListener('hashchange', syncRoute);
+      window.addEventListener('popstate', syncRoute);
+
+      renderPublicSite();
+      syncRoute();
+    })();
+
+    (function () {
+      var topbar = document.querySelector('.topbar');
+      var hamster = document.getElementById('nav-hamster');
+      var reducedMotion = window.matchMedia && window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+
+      if (!topbar || !hamster || reducedMotion) return;
+
+      var path = {
+        width: 0,
+        height: 0,
+        radius: 0,
+        straightX: 0,
+        straightY: 0,
+        perimeter: 1
+      };
+      var progress = 18;
+      var speed = 42;
+      var direction = 1;
+      var facing = 1;
+      var lastTime = 0;
+      var nextPause = 2600 + Math.random() * 2400;
+      var pauseUntil = 0;
+
+      function rebuildPath() {
+        var rect = topbar.getBoundingClientRect();
+        path.width = Math.max(rect.width, 1);
+        path.height = Math.max(rect.height, 1);
+        path.radius = Math.min(path.width / 2, path.height / 2);
+        path.straightX = Math.max(0, path.width - path.radius * 2);
+        path.straightY = Math.max(0, path.height - path.radius * 2);
+        path.perimeter = (path.straightX + path.straightY) * 2 + Math.PI * path.radius * 2;
+        progress %= path.perimeter;
+      }
+
+      function pointAt(distance) {
+        var d = ((distance % path.perimeter) + path.perimeter) % path.perimeter;
+        var arc = Math.PI * path.radius / 2;
+        var x = path.radius;
+        var y = 0;
+
+        if (d <= path.straightX) {
+          return { x: path.radius + d, y: 0 };
+        }
+        d -= path.straightX;
+
+        if (d <= arc) {
+          var angleA = -Math.PI / 2 + d / path.radius;
+          return {
+            x: path.width - path.radius + Math.cos(angleA) * path.radius,
+            y: path.radius + Math.sin(angleA) * path.radius
+          };
+        }
+        d -= arc;
+
+        if (d <= path.straightY) {
+          return { x: path.width, y: path.radius + d };
+        }
+        d -= path.straightY;
+
+        if (d <= arc) {
+          var angleB = d / path.radius;
+          return {
+            x: path.width - path.radius + Math.cos(angleB) * path.radius,
+            y: path.height - path.radius + Math.sin(angleB) * path.radius
+          };
+        }
+        d -= arc;
+
+        if (d <= path.straightX) {
+          return { x: path.width - path.radius - d, y: path.height };
+        }
+        d -= path.straightX;
+
+        if (d <= arc) {
+          var angleC = Math.PI / 2 + d / path.radius;
+          return {
+            x: path.radius + Math.cos(angleC) * path.radius,
+            y: path.height - path.radius + Math.sin(angleC) * path.radius
+          };
+        }
+        d -= arc;
+
+        if (d <= path.straightY) {
+          return { x: 0, y: path.height - path.radius - d };
+        }
+        d -= path.straightY;
+
+        var angleD = Math.PI + d / path.radius;
+        x = path.radius + Math.cos(angleD) * path.radius;
+        y = path.radius + Math.sin(angleD) * path.radius;
+        return { x: x, y: y };
+      }
+
+      function placeHamster() {
+        var current = pointAt(progress);
+        var next = pointAt(progress + direction * 4);
+        var dx = next.x - current.x;
+        var dy = next.y - current.y;
+        var tilt = Math.max(-8, Math.min(8, dy * 2));
+
+        if (Math.abs(dx) > 0.5) {
+          facing = dx < 0 ? -1 : 1;
+        }
+
+        hamster.style.transform = 'translate3d(' + current.x + 'px, ' + current.y + 'px, 0) translate(-50%, -50%) scaleX(' + facing + ') rotate(' + tilt + 'deg)';
+      }
+
+      function animate(now) {
+        if (!lastTime) lastTime = now;
+        var delta = Math.min((now - lastTime) / 1000, 0.05);
+        lastTime = now;
+
+        if (now >= pauseUntil) {
+          hamster.classList.remove('is-sniffing');
+          progress += speed * direction * delta;
+
+          if (now >= nextPause) {
+            pauseUntil = now + 700 + Math.random() * 1100;
+            nextPause = pauseUntil + 3200 + Math.random() * 5200;
+            hamster.classList.add('is-sniffing');
+            if (Math.random() > 0.64) direction *= -1;
+          }
+        }
+
+        placeHamster();
+        requestAnimationFrame(animate);
+      }
+
+      rebuildPath();
+
+      if ('ResizeObserver' in window) {
+        new ResizeObserver(rebuildPath).observe(topbar);
+      } else {
+        window.addEventListener('resize', rebuildPath);
+      }
+
+      requestAnimationFrame(animate);
+    })();
+
+    (function () {
+      var canvas = document.getElementById('particle-bg');
+      var ctx = canvas.getContext('2d');
+      var dpr = 1;
+      var pointer = {
+        x: window.innerWidth * 0.72,
+        y: window.innerHeight * 0.38,
+        px: window.innerWidth * 0.72,
+        py: window.innerHeight * 0.38,
+        vx: 0,
+        vy: 0
+      };
+      var particles = [];
+      var particleCount = 58;
+      var lastTime = 0;
+
+      for (var i = 0; i < particleCount; i += 1) {
+        particles.push({
+          x: pointer.x,
+          y: pointer.y,
+          vx: 0,
+          vy: 0,
+          size: 2 + Math.random() * 5,
+          spring: 0.004 + Math.random() * 0.012,
+          drag: 0.88 + Math.random() * 0.08,
+          wind: 0.012 + Math.random() * 0.038,
+          angle: Math.random() * Math.PI * 2,
+          orbit: 22 + Math.random() * 130,
+          alpha: 0.18 + Math.random() * 0.38
+        });
+      }
+
+      function resize() {
+        dpr = Math.min(window.devicePixelRatio || 1, 2);
+        canvas.width = Math.floor(window.innerWidth * dpr);
+        canvas.height = Math.floor(window.innerHeight * dpr);
+        canvas.style.width = window.innerWidth + 'px';
+        canvas.style.height = window.innerHeight + 'px';
+        ctx.setTransform(dpr, 0, 0, dpr, 0, 0);
+      }
+
+      window.addEventListener('resize', resize);
+      window.addEventListener('pointermove', function (event) {
+        pointer.px = pointer.x;
+        pointer.py = pointer.y;
+        pointer.x = event.clientX;
+        pointer.y = event.clientY;
+        pointer.vx += (pointer.x - pointer.px) * 0.42;
+        pointer.vy += (pointer.y - pointer.py) * 0.42;
+      });
+
+      resize();
+
+      function render(now) {
+        var time = now * 0.001;
+        var delta = lastTime ? Math.min((now - lastTime) / 16.67, 2) : 1;
+        lastTime = now;
+
+        pointer.vx *= 0.86;
+        pointer.vy *= 0.86;
+
+        ctx.clearRect(0, 0, window.innerWidth, window.innerHeight);
+        ctx.globalCompositeOperation = 'lighter';
+
+        particles.forEach(function (particle, index) {
+          var drift = time * 0.9 + particle.angle + index * 0.21;
+          var windX = -pointer.vx * particle.wind;
+          var windY = -pointer.vy * particle.wind;
+          var crossWindX = -pointer.vy * particle.wind * 0.48;
+          var crossWindY = pointer.vx * particle.wind * 0.48;
+          var turbulenceX = Math.cos(drift * 1.7) * 0.34;
+          var turbulenceY = Math.sin(drift * 1.3) * 0.34;
+          var targetX = pointer.x + Math.cos(drift) * particle.orbit + windX + crossWindX;
+          var targetY = pointer.y + Math.sin(drift * 0.82) * particle.orbit * 0.58 + windY + crossWindY;
+
+          particle.vx += (targetX - particle.x) * particle.spring * delta;
+          particle.vy += (targetY - particle.y) * particle.spring * delta;
+          particle.vx += (windX + turbulenceX) * delta;
+          particle.vy += (windY + turbulenceY) * delta;
+          particle.vx *= Math.pow(particle.drag, delta);
+          particle.vy *= Math.pow(particle.drag, delta);
+          particle.x += particle.vx * delta;
+          particle.y += particle.vy * delta;
+
+          var speed = Math.min(Math.hypot(pointer.vx, pointer.vy) / 42, 1);
+          var pulse = Math.sin(time * 2 + index) * 0.24 + 0.76 + speed * 0.22;
+          var radius = particle.size * pulse;
+          var gradient = ctx.createRadialGradient(
+            particle.x,
+            particle.y,
+            0,
+            particle.x,
+            particle.y,
+            radius * 5
+          );
+
+          gradient.addColorStop(0, 'rgba(249, 115, 22, ' + particle.alpha + ')');
+          gradient.addColorStop(0.45, 'rgba(249, 115, 22, ' + particle.alpha * 0.22 + ')');
+          gradient.addColorStop(1, 'rgba(249, 115, 22, 0)');
+
+          ctx.fillStyle = gradient;
+          ctx.beginPath();
+          ctx.arc(particle.x, particle.y, radius * 5, 0, Math.PI * 2);
+          ctx.fill();
+        });
+
+        ctx.globalCompositeOperation = 'source-over';
+        requestAnimationFrame(render);
+      }
+
+      requestAnimationFrame(render);
+    })();
+  </script>
+</body>
+</html>

@@ -1,0 +1,6 @@
+{
+  "name": "Portfolio - Georgy Lazebny",
+  "description": "Static portfolio website for content maker, director, operator, and photographer Georgy Lazebny, featuring client admin area.",
+  "requestFramePermissions": [],
+  "majorCapabilities": ["MAJOR_CAPABILITY_SERVER_SIDE_GEMINI_API"]
+}
