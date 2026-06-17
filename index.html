@@ -1805,28 +1805,64 @@
           <section class="admin-card" data-admin-panel="videos" hidden>
             <span class="label">Управление видео на главной</span>
             <form class="admin-form" id="videos-form">
-              <div class="video-upload-row">
-                <label>
-                  Видео 01
-                  <input id="hero-video-1" type="file" accept="video/mp4,video/webm,video/ogg">
-                </label>
-                <span class="video-status" id="hero-video-status-1" aria-label="Видео 01 не загружено"></span>
+              <div style="display: flex; flex-direction: column; gap: 20px;">
+                
+                <!-- Video Slot 1 -->
+                <div style="border: 1px solid rgba(255,255,255,0.05); padding: 16px; border-radius: 12px; background: rgba(0,0,0,0.15);">
+                  <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 12px;">
+                    <span style="font-weight: 500; color: #fff;">Видео 01</span>
+                    <div style="display: flex; align-items: center; gap: 8px;">
+                      <span class="video-status" id="hero-video-status-1" style="margin-bottom: 0;" aria-label="Видео 01 не загружено"></span>
+                      <button id="clear-video-btn-1" type="button" class="button" style="background: rgba(239, 68, 68, 0.15); color: #f87171; border: 1px solid rgba(239,68,68,0.2); padding: 2px 8px; border-radius: 6px; font-size: 11px;">Очистить</button>
+                    </div>
+                  </div>
+                  <div style="display: flex; flex-direction: column; gap: 8px;">
+                    <label style="font-size: 11px; opacity: 0.7;">Файл видео (макс 50МБ)</label>
+                    <input id="hero-video-1" type="file" accept="video/mp4,video/webm,video/ogg" style="width: 100%;">
+                    
+                    <label style="font-size: 11px; opacity: 0.7; margin-top: 8px;">ИЛИ прямая ссылка (например, с GitHub / внешнего хостинга):</label>
+                    <input id="hero-video-url-1" type="url" placeholder="https://raw.githubusercontent.com/.../video.mp4" style="background: rgba(255,255,255,0.05); border: 1px solid rgba(255,255,255,0.1); border-radius: 8px; padding: 8px 12px; color: #fff; width: 100%;">
+                  </div>
+                </div>
+
+                <!-- Video Slot 2 -->
+                <div style="border: 1px solid rgba(255,255,255,0.05); padding: 16px; border-radius: 12px; background: rgba(0,0,0,0.15);">
+                  <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 12px;">
+                    <span style="font-weight: 500; color: #fff;">Видео 02</span>
+                    <div style="display: flex; align-items: center; gap: 8px;">
+                      <span class="video-status" id="hero-video-status-2" style="margin-bottom: 0;" aria-label="Видео 02 не загружено"></span>
+                      <button id="clear-video-btn-2" type="button" class="button" style="background: rgba(239, 68, 68, 0.15); color: #f87171; border: 1px solid rgba(239,68,68,0.2); padding: 2px 8px; border-radius: 6px; font-size: 11px;">Очистить</button>
+                    </div>
+                  </div>
+                  <div style="display: flex; flex-direction: column; gap: 8px;">
+                    <label style="font-size: 11px; opacity: 0.7;">Файл видео (макс 50МБ)</label>
+                    <input id="hero-video-2" type="file" accept="video/mp4,video/webm,video/ogg" style="width: 100%;">
+                    
+                    <label style="font-size: 11px; opacity: 0.7; margin-top: 8px;">ИЛИ прямая ссылка (например, с GitHub / внешнего хостинга):</label>
+                    <input id="hero-video-url-2" type="url" placeholder="https://raw.githubusercontent.com/.../video.mp4" style="background: rgba(255,255,255,0.05); border: 1px solid rgba(255,255,255,0.1); border-radius: 8px; padding: 8px 12px; color: #fff; width: 100%;">
+                  </div>
+                </div>
+
+                <!-- Video Slot 3 -->
+                <div style="border: 1px solid rgba(255,255,255,0.05); padding: 16px; border-radius: 12px; background: rgba(0,0,0,0.15);">
+                  <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 12px;">
+                    <span style="font-weight: 500; color: #fff;">Видео 03</span>
+                    <div style="display: flex; align-items: center; gap: 8px;">
+                      <span class="video-status" id="hero-video-status-3" style="margin-bottom: 0;" aria-label="Видео 03 не загружено"></span>
+                      <button id="clear-video-btn-3" type="button" class="button" style="background: rgba(239, 68, 68, 0.15); color: #f87171; border: 1px solid rgba(239,68,68,0.2); padding: 2px 8px; border-radius: 6px; font-size: 11px;">Очистить</button>
+                    </div>
+                  </div>
+                  <div style="display: flex; flex-direction: column; gap: 8px;">
+                    <label style="font-size: 11px; opacity: 0.7;">Файл видео (макс 50МБ)</label>
+                    <input id="hero-video-3" type="file" accept="video/mp4,video/webm,video/ogg" style="width: 100%;">
+                    
+                    <label style="font-size: 11px; opacity: 0.7; margin-top: 8px;">ИЛИ прямая ссылка (например, с GitHub / внешнего хостинга):</label>
+                    <input id="hero-video-url-3" type="url" placeholder="https://raw.githubusercontent.com/.../video.mp4" style="background: rgba(255,255,255,0.05); border: 1px solid rgba(255,255,255,0.1); border-radius: 8px; padding: 8px 12px; color: #fff; width: 100%;">
+                  </div>
+                </div>
+
               </div>
-              <div class="video-upload-row">
-                <label>
-                  Видео 02
-                  <input id="hero-video-2" type="file" accept="video/mp4,video/webm,video/ogg">
-                </label>
-                <span class="video-status" id="hero-video-status-2" aria-label="Видео 02 не загружено"></span>
-              </div>
-              <div class="video-upload-row">
-                <label>
-                  Видео 03
-                  <input id="hero-video-3" type="file" accept="video/mp4,video/webm,video/ogg">
-                </label>
-                <span class="video-status" id="hero-video-status-3" aria-label="Видео 03 не загружено"></span>
-              </div>
-              <button class="button primary" type="submit">Сохранить видео</button>
+              <button class="button primary" type="submit" style="margin-top: 20px;">Сохранить видео</button>
               <p class="admin-message" id="videos-message"></p>
             </form>
           </section>
@@ -1879,7 +1915,9 @@
   </main>
 
   <!-- Canvas-скрипт: рисует оранжевые частицы с инерцией и эффектом ветра от курсора -->
-  <script>
+  <script type="module">
+    import { loadPortfolioFromCloud, savePortfolioToCloud, uploadFileToCloud } from "/src/firebase.ts";
+
     (function () {
       var loadingScreen = document.getElementById('loading-screen');
 
@@ -1899,7 +1937,7 @@
       var STORAGE_KEY = 'portfolio-admin-content-v2';
       var SESSION_KEY = 'portfolio-admin-session-v1';
       var ADMIN_CODE = '2468';
-      var MAX_VIDEO_SIZE_BYTES = 2 * 1024 * 1024;
+      var MAX_VIDEO_SIZE_BYTES = 50 * 1024 * 1024;
       var SUPPORTED_VIDEO_TYPES = ['video/mp4', 'video/webm', 'video/ogg'];
       var defaultData = {
         works: [
@@ -1957,6 +1995,29 @@
 
       var data = loadData();
       var activeAdminTab = 'works';
+      var currentLightboxWorks = [];
+      var currentLightboxIndex = -1;
+
+      // Asynchronously load the central config data from Firestore
+      loadPortfolioFromCloud().then(function (cloudData) {
+        if (cloudData) {
+          data = cloudData;
+          try {
+            localStorage.setItem(STORAGE_KEY, JSON.stringify(data));
+          } catch (e) {}
+          renderPublicSite();
+          if (document.getElementById('admin-section') && !document.getElementById('admin-section').hidden) {
+            renderAdmin();
+          }
+        } else {
+          // Empty cloud store: publish our initial model to Firestore
+          savePortfolioToCloud(data).then(function (ok) {
+            if (ok) console.log("Initialized Firestore database successfully!");
+          });
+        }
+      }).catch(function (err) {
+        console.error("Firestore Loading Failed:", err);
+      });
 
       function loadData() {
         try {
@@ -2011,9 +2072,33 @@
         return JSON.parse(JSON.stringify(defaultData));
       }
 
-      function saveData() {
+      function saveData(formMessageId) {
         try {
           localStorage.setItem(STORAGE_KEY, JSON.stringify(data));
+
+          if (formMessageId) {
+            var msgEl = document.getElementById(formMessageId);
+            if (msgEl) {
+              msgEl.textContent = 'Сохранение в облачную базу данных...';
+              msgEl.style.color = '#f97316';
+            }
+          }
+
+          savePortfolioToCloud(data).then(function (success) {
+            if (formMessageId) {
+              var msgEl = document.getElementById(formMessageId);
+              if (msgEl) {
+                if (success) {
+                  msgEl.textContent = 'Все изменения сохранены в облаке!';
+                  msgEl.style.color = '#22c55e';
+                } else {
+                  msgEl.textContent = 'Сохранено локально, ошибка записи в облако.';
+                  msgEl.style.color = '#ef4444';
+                }
+              }
+            }
+          });
+
           return true;
         } catch (error) {
           return false;
@@ -2056,7 +2141,10 @@
         }
       }
 
-      function openLightbox(title, meta, description, videoUrl, imageBase64) {
+      function displayLightboxCurrent() {
+        if (currentLightboxIndex < 0 || !currentLightboxWorks || currentLightboxIndex >= currentLightboxWorks.length) return;
+        var work = currentLightboxWorks[currentLightboxIndex];
+
         var lightbox = document.getElementById('video-lightbox');
         var wrapper = document.getElementById('lightbox-player-wrapper');
         var lightboxTitle = document.getElementById('lightbox-title');
@@ -2065,17 +2153,17 @@
 
         if (!lightbox || !wrapper) return;
 
-        lightboxTitle.textContent = title || '';
-        lightboxMeta.textContent = meta || '';
-        lightboxDescription.textContent = description || '';
+        lightboxTitle.textContent = work.title || '';
+        lightboxMeta.textContent = work.meta || '';
+        lightboxDescription.textContent = work.description || '';
         wrapper.innerHTML = '';
 
-        if (videoUrl) {
+        if (work.videoUrl) {
           var youtubeRegex = /(?:youtube\.com\/(?:[^\/]+\/.+\/|(?:v|e(?:mbed)?)\/|.*[?&]v=)|youtu\.be\/)([^"&?\/\s]{11})/i;
-          var youtubeMatch = videoUrl.match(youtubeRegex);
+          var youtubeMatch = work.videoUrl.match(youtubeRegex);
 
           var vimeoRegex = /(?:vimeo\.com\/|player\.vimeo\.com\/video\/)([0-9]+)/i;
-          var vimeoMatch = videoUrl.match(vimeoRegex);
+          var vimeoMatch = work.videoUrl.match(vimeoRegex);
 
           if (youtubeMatch && youtubeMatch[1]) {
             var iframe = document.createElement('iframe');
@@ -2091,16 +2179,16 @@
             wrapper.appendChild(iframe);
           } else {
             var video = document.createElement('video');
-            video.src = videoUrl;
+            video.src = work.videoUrl;
             video.controls = true;
             video.autoplay = true;
             video.playsInline = true;
             wrapper.appendChild(video);
           }
-        } else if (imageBase64) {
+        } else if (work.image) {
           var img = document.createElement('img');
-          img.src = imageBase64;
-          img.alt = title || '';
+          img.src = work.image;
+          img.alt = work.title || '';
           wrapper.appendChild(img);
         } else {
           var placeholder = document.createElement('div');
@@ -2111,6 +2199,37 @@
 
         lightbox.hidden = false;
         document.body.style.overflow = 'hidden';
+      }
+
+      function navigateLightbox(direction) {
+        if (!currentLightboxWorks || currentLightboxWorks.length <= 1) return;
+        currentLightboxIndex += direction;
+        if (currentLightboxIndex < 0) {
+          currentLightboxIndex = currentLightboxWorks.length - 1;
+        } else if (currentLightboxIndex >= currentLightboxWorks.length) {
+          currentLightboxIndex = 0;
+        }
+        displayLightboxCurrent();
+      }
+
+      function openLightbox(title, meta, description, videoUrl, imageBase64, playlist, index) {
+        if (playlist && index !== undefined) {
+          currentLightboxWorks = playlist;
+          currentLightboxIndex = index;
+          displayLightboxCurrent();
+          return;
+        }
+
+        var customWork = {
+          title: title,
+          meta: meta,
+          description: description,
+          videoUrl: videoUrl,
+          image: imageBase64
+        };
+        currentLightboxWorks = [customWork];
+        currentLightboxIndex = 0;
+        displayLightboxCurrent();
       }
 
       function closeLightbox() {
@@ -2185,12 +2304,27 @@
             card.appendChild(video);
 
             card.addEventListener('click', function() {
-              openLightbox(
-                'Избранный шоурил ' + String(index + 1).padStart(2, '0'),
-                'Промо-петля / Шоурил',
-                'Петля высокого качества для главного экрана.',
-                slot.src
-              );
+              var showreelsPlaylist = data.videos.slots.filter(function (s) {
+                return !!s.src;
+              }).map(function (s, idx) {
+                return {
+                  title: 'Избранный шоурил ' + String(idx + 1).padStart(2, '0'),
+                  meta: 'Промо-петля / Шоурил',
+                  description: 'Петля высокого качества для главного экрана.',
+                  videoUrl: s.src,
+                  image: ''
+                };
+              });
+
+              var activeIdx = 0;
+              for (var i = 0; i < showreelsPlaylist.length; i++) {
+                if (showreelsPlaylist[i].videoUrl === slot.src) {
+                  activeIdx = i;
+                  break;
+                }
+              }
+
+              openLightbox(null, null, null, null, null, showreelsPlaylist, activeIdx);
             });
           }
 
@@ -2256,7 +2390,7 @@
           return;
         }
 
-        filteredWorks.forEach(function(work) {
+        filteredWorks.forEach(function(work, index) {
           var card = document.createElement('div');
           card.className = 'gallery-video-card';
 
@@ -2365,13 +2499,7 @@
           }
 
           card.addEventListener('click', function() {
-            openLightbox(
-              work.title,
-              work.meta,
-              work.description,
-              work.videoUrl,
-              work.image
-            );
+            openLightbox(null, null, null, null, null, filteredWorks, index);
           });
 
           container.appendChild(card);
@@ -2570,6 +2698,15 @@
         document.getElementById('admin-contact-email').value = data.contacts.email;
         document.getElementById('admin-contact-telegram').value = data.contacts.telegram;
         document.getElementById('admin-contact-media').value = data.contacts.media;
+        
+        // Fill video URL inputs
+        data.videos.slots.forEach(function (slot, index) {
+          var urlInput = document.getElementById('hero-video-url-' + (index + 1));
+          if (urlInput) {
+            urlInput.value = (slot && slot.src) ? slot.src : '';
+          }
+        });
+
         updateOpacityControl();
       }
 
@@ -2669,6 +2806,34 @@
         updateVideoStatuses();
       }
 
+      function uploadFileToHosting(file, cloudPath) {
+        var formData = new FormData();
+        formData.append('file', file);
+        return fetch('/api/upload', {
+          method: 'POST',
+          body: formData
+        })
+        .then(function (response) {
+          if (!response.ok) {
+            throw new Error('Server upload failed');
+          }
+          return response.json();
+        })
+        .then(function (res) {
+          if (res && res.success && res.url) {
+            return res.url;
+          }
+          throw new Error('Invalid server payload');
+        })
+        .catch(function (err) {
+          console.warn("Hosting upload failed, falling back to Firebase storage/local:", err);
+          if (typeof uploadFileToCloud === 'function') {
+            return uploadFileToCloud(file, cloudPath);
+          }
+          throw err;
+        });
+      }
+
       function readImage(file, callback) {
         if (!file) {
           callback('');
@@ -2735,11 +2900,15 @@
         var id = document.getElementById('work-id').value;
         var file = document.getElementById('work-image').files[0];
         var shouldRemoveImage = document.getElementById('work-remove-image').checked;
+        var msgEl = document.getElementById('work-message');
+        msgEl.textContent = 'Обработка работы...';
+        msgEl.style.color = '#f97316';
 
-        readImage(file, function (image) {
-          var existing = data.works.find(function (work) {
-            return work.id === id;
-          });
+        var existing = data.works.find(function (work) {
+          return work.id === id;
+        });
+
+        var saveWithImage = function (imageUrl) {
           var workData = {
             id: id || 'work-' + Date.now(),
             type: document.getElementById('work-type').value,
@@ -2747,7 +2916,7 @@
             title: document.getElementById('work-title').value.trim(),
             description: document.getElementById('work-description').value.trim(),
             videoUrl: document.getElementById('work-video-url').value.trim(),
-            image: shouldRemoveImage ? '' : image || (existing ? existing.image : ''),
+            image: shouldRemoveImage ? '' : imageUrl || (existing ? existing.image : ''),
             visual: existing ? existing.visual : ''
           };
 
@@ -2757,12 +2926,27 @@
             data.works.unshift(workData);
           }
 
-          saveData();
+          saveData('work-message');
           renderPublicSite();
           renderAdminWorkList();
           resetWorkForm();
-          document.getElementById('work-message').textContent = 'Работа сохранена.';
-        });
+        };
+
+        if (file && !shouldRemoveImage) {
+          msgEl.textContent = 'Загрузка изображения на хостинг...';
+          var uniquePath = 'works/' + Date.now() + '_' + file.name;
+          uploadFileToHosting(file, uniquePath).then(function (downloadUrl) {
+            saveWithImage(downloadUrl);
+          }).catch(function (err) {
+            console.error("Image upload error:", err);
+            msgEl.textContent = 'Ошибка загрузки, сохраняем локально...';
+            readImage(file, function (image) {
+              saveWithImage(image);
+            });
+          });
+        } else {
+          saveWithImage('');
+        }
       });
 
       document.getElementById('work-reset').addEventListener('click', resetWorkForm);
@@ -2771,20 +2955,38 @@
         event.preventDefault();
         var file = document.getElementById('admin-about-image').files[0];
         var shouldRemoveImage = document.getElementById('admin-about-remove-image').checked;
+        var msgEl = document.getElementById('descriptions-message');
+        msgEl.textContent = 'Сохранение автобиографии...';
+        msgEl.style.color = '#f97316';
 
-        readImage(file, function (image) {
+        var saveWithPortrait = function (portraitUrl) {
           data.descriptions = {
             aboutQuote: document.getElementById('admin-about-quote').value.trim(),
             aboutText: document.getElementById('admin-about-text').value.trim(),
             aboutNote: document.getElementById('admin-about-note').value.trim(),
-            portraitImage: shouldRemoveImage ? '' : image || data.descriptions.portraitImage || ''
+            portraitImage: shouldRemoveImage ? '' : portraitUrl || data.descriptions.portraitImage || ''
           };
-          saveData();
+          saveData('descriptions-message');
           renderPublicSite();
           document.getElementById('descriptions-form').reset();
           fillAdminForms();
-          document.getElementById('descriptions-message').textContent = 'Описания сохранены.';
-        });
+        };
+
+        if (file && !shouldRemoveImage) {
+          msgEl.textContent = 'Загрузка аватара на хостинг...';
+          var uniquePath = 'descriptions/' + Date.now() + '_' + file.name;
+          uploadFileToHosting(file, uniquePath).then(function (downloadUrl) {
+            saveWithPortrait(downloadUrl);
+          }).catch(function (err) {
+            console.error("Portrait upload error:", err);
+            msgEl.textContent = 'Ошибка загрузки в облако, сохраняем локально...';
+            readImage(file, function (image) {
+              saveWithPortrait(image);
+            });
+          });
+        } else {
+          saveWithPortrait('');
+        }
       });
 
       document.getElementById('videos-form').addEventListener('submit', function (event) {
@@ -2794,16 +2996,20 @@
           document.getElementById('hero-video-2'),
           document.getElementById('hero-video-3')
         ];
+        var urlInputs = [
+          document.getElementById('hero-video-url-1'),
+          document.getElementById('hero-video-url-2'),
+          document.getElementById('hero-video-url-3')
+        ];
         var files = inputs.map(function (input) {
           return input.files[0] || null;
         });
-        var selected = files.filter(Boolean);
-        var message = document.getElementById('videos-message');
 
-        if (!selected.length) {
-          message.textContent = 'Выберите хотя бы одно видео.';
-          return;
-        }
+        var message = document.getElementById('videos-message');
+        message.style.color = '#f97316';
+        message.textContent = 'Обработка фоновых видео...';
+
+        var selected = files.filter(Boolean);
 
         var invalidFile = selected.find(function (file) {
           return SUPPORTED_VIDEO_TYPES.indexOf(file.type) === -1;
@@ -2811,6 +3017,7 @@
 
         if (invalidFile) {
           message.textContent = 'Видео не загружено: нужен формат MP4, WebM или OGG.';
+          message.style.color = '#ef4444';
           return;
         }
 
@@ -2819,35 +3026,94 @@
         });
 
         if (oversizedFile) {
-          message.textContent = 'Видео не загружено: файл "' + oversizedFile.name + '" весит ' + formatFileSize(oversizedFile.size) + '. Для этого прототипа максимум ' + formatFileSize(MAX_VIDEO_SIZE_BYTES) + '.';
+          message.textContent = 'Видео не загружено: файл "' + oversizedFile.name + '" весит ' + formatFileSize(oversizedFile.size) + '. Максимум ' + formatFileSize(MAX_VIDEO_SIZE_BYTES) + '.';
+          message.style.color = '#ef4444';
           return;
         }
 
-        message.textContent = 'Видео загружается...';
-        var pending = selected.length;
-        files.forEach(function (file, index) {
-          if (!file) return;
+        var savePromises = files.map(function (file, index) {
+          // If a file is chosen, upload to hosting
+          if (file) {
+            var uniquePath = 'videos/' + Date.now() + '_' + file.name;
+            return uploadFileToHosting(file, uniquePath).then(function (downloadUrl) {
+              return {
+                index: index,
+                videoRef: {
+                  id: 'video-' + (index + 1),
+                  name: file.name,
+                  type: file.type,
+                  src: downloadUrl
+                }
+              };
+            }).catch(function (err) {
+              console.error("Video " + (index + 1) + " upload error:", err);
+              return null;
+            });
+          }
 
-          readVideo(file, function (video) {
-            if (video) {
-              data.videos.slots[index] = Object.assign({}, defaultData.videos.slots[index], video);
-            }
-
-            pending -= 1;
-            if (pending === 0) {
-              if (!saveData()) {
-                message.textContent = 'Видео не сохранено: браузерное хранилище переполнено. Для публикации нужна серверная загрузка видео.';
-                return;
+          // If no file but there is a link pasted, use the pasted link
+          var pastedUrl = urlInputs[index].value.trim();
+          if (pastedUrl) {
+            return Promise.resolve({
+              index: index,
+              videoRef: {
+                id: 'video-' + (index + 1),
+                name: 'Direct Link / ' + pastedUrl.split('/').pop(),
+                type: 'video/mp4',
+                src: pastedUrl
               }
+            });
+          }
 
-              renderPublicSite();
-              updateVideoStatuses();
-              document.getElementById('videos-form').reset();
-              message.textContent = 'Видео сохранены.';
-            }
+          // No-op for this slot, preserve current slot
+          return Promise.resolve({
+            index: index,
+            videoRef: data.videos.slots[index]
           });
         });
+
+        Promise.all(savePromises).then(function (results) {
+          var updatedCount = 0;
+          results.forEach(function (res) {
+            if (res && res.videoRef) {
+              data.videos.slots[res.index] = res.videoRef;
+              updatedCount += 1;
+            }
+          });
+
+          saveData('videos-message');
+          renderPublicSite();
+          inputs.forEach(function (input) { input.value = ''; });
+          fillAdminForms();
+        }).catch(function (err) {
+          console.error("Error saving background videos:", err);
+          message.textContent = 'Произошла ошибка при сохранении видео.';
+          message.style.color = '#ef4444';
+        });
       });
+
+      // Attach clear background slot buttons
+      var clearBtn1 = document.getElementById('clear-video-btn-1');
+      if (clearBtn1) {
+        clearBtn1.addEventListener('click', function() {
+          clearVideoSlot(0);
+          fillAdminForms();
+        });
+      }
+      var clearBtn2 = document.getElementById('clear-video-btn-2');
+      if (clearBtn2) {
+        clearBtn2.addEventListener('click', function() {
+          clearVideoSlot(1);
+          fillAdminForms();
+        });
+      }
+      var clearBtn3 = document.getElementById('clear-video-btn-3');
+      if (clearBtn3) {
+        clearBtn3.addEventListener('click', function() {
+          clearVideoSlot(2);
+          fillAdminForms();
+        });
+      }
 
       document.getElementById('contacts-form').addEventListener('submit', function (event) {
         event.preventDefault();
@@ -2857,9 +3123,8 @@
           telegram: document.getElementById('admin-contact-telegram').value.trim(),
           media: document.getElementById('admin-contact-media').value.trim()
         };
-        saveData();
+        saveData('contacts-message');
         renderPublicSite();
-        document.getElementById('contacts-message').textContent = 'Контакты сохранены.';
       });
 
       document.getElementById('surface-opacity').addEventListener('input', function (event) {
@@ -2873,14 +3138,8 @@
 
       document.getElementById('appearance-form').addEventListener('submit', function (event) {
         event.preventDefault();
-
-        if (!saveData()) {
-          document.getElementById('appearance-message').textContent = 'Настройки не сохранены: хранилище переполнено.';
-          return;
-        }
-
+        saveData('appearance-message');
         renderPublicSite();
-        document.getElementById('appearance-message').textContent = 'Вид сохранён.';
       });
 
       window.addEventListener('hashchange', syncRoute);
@@ -2899,8 +3158,16 @@
         });
       }
       window.addEventListener('keydown', function (e) {
-        if (e.key === 'Escape') {
-          closeLightbox();
+        var lightbox = document.getElementById('video-lightbox');
+        // Only trigger keys if lightbox is open and visible
+        if (lightbox && !lightbox.hidden) {
+          if (e.key === 'Escape') {
+            closeLightbox();
+          } else if (e.key === 'ArrowRight' || e.key === 'Right') {
+            navigateLightbox(1);
+          } else if (e.key === 'ArrowLeft' || e.key === 'Left') {
+            navigateLightbox(-1);
+          }
         }
       });
 

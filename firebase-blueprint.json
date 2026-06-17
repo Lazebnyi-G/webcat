@@ -1,0 +1,38 @@
+{
+  "entities": {
+    "PortfolioConfig": {
+      "title": "Portfolio Configuration",
+      "description": "Global user-editable portfolio configuration containing all works, biography text, profile photo, and active theme customization parameters.",
+      "type": "object",
+      "properties": {
+        "works": {
+          "type": "array",
+          "description": "An array of curated photo/video gallery projects with metadata descriptions and asset references."
+        },
+        "descriptions": {
+          "type": "object",
+          "description": "Detailed multi-paragraph description text, biography quotes, and primary face avatar/portrait image link."
+        },
+        "contacts": {
+          "type": "object",
+          "description": "Structured communication information such as email address link, custom telegram handler URL, and media kit files."
+        },
+        "videos": {
+          "type": "object",
+          "description": "Background looping video asset references mapping slot requirements for front-page visual accents."
+        },
+        "appearance": {
+          "type": "object",
+          "description": "Display parameters such as card transparency slider values for precise aesthetics control."
+        }
+      },
+      "required": ["works", "descriptions", "contacts"]
+    }
+  },
+  "firestore": {
+    "portfolio/config": {
+      "schema": "PortfolioConfig",
+      "description": "The primary configuration document holding unified client-side state synchronized globally for all viewers."
+    }
+  }
+}
