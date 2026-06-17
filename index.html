@@ -3,6 +3,30 @@
 <head>
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
+
+  <!-- Primary Meta Tags -->
+  <meta name="title" content="Георгий Лазебный | Режиссёр, оператор, фотограф">
+  <meta name="description" content="Портфолио Георгия Лазебного — профессиональный кинорежиссёр, оператор-постановщик и фотограф. Избранные работы, шоурилы, направления и контакты для сотрудничества.">
+  <meta name="keywords" content="Георгий Лазебный, режиссер, кинорежиссер, оператор, оператор-постановщик, фотограф, шоурил, портфолио, видеосъемка, реклама, клипы">
+  <meta name="author" content="Георгий Лазебный">
+
+  <!-- Open Graph / Facebook -->
+  <meta property="og:type" content="website">
+  <meta property="og:url" content="https://ais-pre-butl6lxhsd5bvsed2kqeou-491441782414.europe-west2.run.app/">
+  <meta property="og:title" content="Георгий Лазебный | Режиссёр, оператор, фотограф">
+  <meta property="og:description" content="Портфолио Георгия Лазебного — профессиональный кинорежиссёр, оператор-постановщик и фотограф. Избранные работы, шоурилы, направления и контакты для сотрудничества.">
+  <meta property="og:image" content="https://ais-pre-butl6lxhsd5bvsed2kqeou-491441782414.europe-west2.run.app/social_preview.jpg">
+  <meta property="og:image:width" content="1200">
+  <meta property="og:image:height" content="630">
+  <meta property="og:site_name" content="Георгий Лазебный Портфолио">
+  <meta property="og:locale" content="ru_RU">
+
+  <!-- Twitter -->
+  <meta name="twitter:card" content="summary_large_image">
+  <meta name="twitter:url" content="https://ais-pre-butl6lxhsd5bvsed2kqeou-491441782414.europe-west2.run.app/">
+  <meta name="twitter:title" content="Георгий Лазебный | Режиссёр, оператор, фотограф">
+  <meta name="twitter:description" content="Портфолио Георгия Лазебного — профессиональный кинорежиссёр, оператор-постановщик и фотограф. Избранные работы, шоурилы, направления и контакты для сотрудничества.">
+  <meta name="twitter:image" content="https://ais-pre-butl6lxhsd5bvsed2kqeou-491441782414.europe-west2.run.app/social_preview.jpg">
   <script>
     (function() {
       var s = localStorage.getItem('theme');
@@ -1299,7 +1323,7 @@
       display: grid;
       place-items: center;
       background: rgba(41, 37, 36, 0.15);
-      transition: background 250ms ease;
+      transition: background 250ms ease, opacity 250ms ease;
     }
 
     .gallery-video-card:hover .gallery-play-btn {
@@ -2263,6 +2287,82 @@
           playBtn.appendChild(playIcon);
           preview.appendChild(playBtn);
           card.appendChild(preview);
+
+          // Hover 3-second loop video preview implementation
+          if (work.type === 'video' && work.videoUrl) {
+            var hoverTimeout = null;
+            var activeVideo = null;
+
+            card.addEventListener('mouseenter', function() {
+              var youtubeRegex = /(?:youtube\.com\/(?:[^\/]+\/.+\/|(?:v|e(?:mbed)?)\/|.*[?&]v=)|youtu\.be\/)([^"&?\/\s]{11})/i;
+              var vimeoRegex = /(?:vimeo\.com\/|player\.vimeo\.com\/video\/)([0-9]+)/i;
+              if (work.videoUrl.match(youtubeRegex) || work.videoUrl.match(vimeoRegex)) {
+                return; // pass on YouTube/Vimeo as hover loops
+              }
+
+              hoverTimeout = setTimeout(function() {
+                if (activeVideo) return;
+
+                var video = document.createElement('video');
+                video.src = work.videoUrl;
+                video.muted = true;
+                video.playsInline = true;
+                video.autoplay = true;
+                if (work.image) {
+                  video.poster = work.image; // uses the video thumbnail for smoother, flutter-free loading
+                }
+
+                // Perfect styles to fit container smoothly
+                video.style.position = 'absolute';
+                video.style.top = '0';
+                video.style.left = '0';
+                video.style.width = '100%';
+                video.style.height = '100%';
+                video.style.objectFit = 'cover';
+                video.style.pointerEvents = 'none';
+                video.style.zIndex = '2';
+                video.style.opacity = '0';
+                video.style.transition = 'opacity 300ms ease';
+
+                // Implement a precise 3-second loop
+                video.addEventListener('timeupdate', function() {
+                  if (video.currentTime >= 3) {
+                    video.currentTime = 0;
+                    video.play().catch(function(err) {});
+                  }
+                });
+
+                video.addEventListener('playing', function() {
+                  video.style.opacity = '1';
+                  playBtn.style.opacity = '0'; // hide play button overlay for maximum focus
+                });
+
+                preview.appendChild(video);
+                activeVideo = video;
+              }, 250); // 250ms debounce for natural user scanning
+            });
+
+            card.addEventListener('mouseleave', function() {
+              if (hoverTimeout) {
+                clearTimeout(hoverTimeout);
+                hoverTimeout = null;
+              }
+              if (activeVideo) {
+                var v = activeVideo;
+                activeVideo = null;
+                v.style.opacity = '0';
+                playBtn.style.opacity = '1'; // restore play button overlay
+                setTimeout(function() {
+                  try {
+                    v.pause();
+                    v.src = '';
+                    v.load();
+                    v.remove();
+                  } catch (e) {}
+                }, 300); // matches the transition time exactly
+              }
+            });
+          }
 
           card.addEventListener('click', function() {
             openLightbox(
